@@ -215,3 +215,8 @@ function onMouseLeave() {
 // window.onbeforeunload = function () {
 //     window.scrollTo(0, 0);
 // }
+window.onload = function (){
+    xhttp = new XMLHttpRequest();
+    xhttp.open('GET', 'server.php');
+    xhttp.send();
+}
