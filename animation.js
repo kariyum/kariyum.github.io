@@ -108,12 +108,6 @@ function resize() {
     canvas.height = height;
 
     stars.forEach( placeStar );
-    if (window.innerWidth < 700){
-        canvas.setAttribute("style","pointer-events: none;");
-        console.log(window.innerWidth)
-    }else{
-        canvas.setAttribute("style","pointer-events: all;");
-    }
 }
 
 function step() {
