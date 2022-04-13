@@ -25,8 +25,8 @@ generate();
 resize();
 step();
 
-if (window.innerWidth > 700){
-    window.onresize = resize;
+window.onresize = resize;
+if (window.innerWidth > 760){
     canvas.onmousemove = onMouseMove;
     canvas.ontouchmove = onTouchMove;
     canvas.ontouchend = onMouseLeave;
@@ -206,7 +206,7 @@ function onTouchMove( event ) {
 
     movePointer( event.touches[0].clientX, event.touches[0].clientY, true );
 
-    // event.preventDefault();
+    event.preventDefault();
 
 }
 
@@ -218,7 +218,12 @@ function onMouseLeave() {
 //     window.scrollTo(0, 0);
 // }
 // window.onload = function (){
-//     xhttp = new XMLHttpRequest();
-//     xhttp.open('GET', 'server.php');
-//     xhttp.send();
+//     // xhttp = new XMLHttpRequest();
+//     // xhttp.open('GET', 'server.php');
+//     // xhttp.send();
+//     mobile=document.getElementById('mobile-id');
+//     if (mobile.style.display=="none"){
+//         console.log("mobile deteceted");
+//     }
+//     console.log(window.getComputedStyle(mobile).display);
 // }
