@@ -204,7 +204,7 @@ function onTouchMove( event ) {
 
     movePointer( event.touches[0].clientX, event.touches[0].clientY, true );
 
-    event.preventDefault();
+    // event.preventDefault();
 
 }
 
