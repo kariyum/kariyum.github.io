@@ -26,12 +26,10 @@ resize();
 step();
 
 window.onresize = resize;
-if (window.innerWidth > 760){
-    canvas.onmousemove = onMouseMove;
-    canvas.ontouchmove = onTouchMove;
-    canvas.ontouchend = onMouseLeave;
-    document.onmouseleave = onMouseLeave;
-}
+canvas.onmousemove = onMouseMove;
+// canvas.ontouchmove = onTouchMove;
+// canvas.ontouchend = onMouseLeave;
+document.onmouseleave = onMouseLeave;
 
 function generate() {
     for( let i = 0; i < STAR_COUNT; i++ ) {
