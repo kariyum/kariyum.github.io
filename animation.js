@@ -108,6 +108,12 @@ function resize() {
     canvas.height = height;
 
     stars.forEach( placeStar );
+    if (window.innerWidth < 700){
+        canvas.setAttribute("style","pointer-events: none;");
+        console.log(window.innerWidth)
+    }else{
+        canvas.setAttribute("style","pointer-events: all;");
+    }
 }
 
 function step() {
@@ -215,8 +221,8 @@ function onMouseLeave() {
 // window.onbeforeunload = function () {
 //     window.scrollTo(0, 0);
 // }
-window.onload = function (){
-    xhttp = new XMLHttpRequest();
-    xhttp.open('GET', 'server.php');
-    xhttp.send();
-}
+// window.onload = function (){
+//     xhttp = new XMLHttpRequest();
+//     xhttp.open('GET', 'server.php');
+//     xhttp.send();
+// }
