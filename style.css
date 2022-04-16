@@ -16,6 +16,7 @@ canvas {
         radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.15), transparent); */
     /* background: radial-gradient(circle, 100% at center, rgb(235, 235, 235), #fff); */
 }
+
 #header{
     height: 100vh;
 }
@@ -29,11 +30,9 @@ background: radial-gradient(circle, rgba(255,255,255,1) 12%, rgba(255,255,255,0.
 }
 .center .title{
     letter-spacing: 0.125rem;
-    font-size: 5vw;
     font-weight: 700;
     opacity: 0.9;
-    text-align: justify;
-    font-size: 5rem;
+    font-size:5rem;
 }
 .center .paragraph{
     font-size: 1.49rem;
@@ -235,4 +234,63 @@ footer div{
     color: white;
     cursor: pointer;
     pointer-events: all;
+}
+@media (orientation: portrait){
+    #header .center{
+        width: auto;
+        left:0%;
+        margin:5%;
+        top:30%;
+    }
+    #header{
+        height:88vh;
+    }
+    .center .title{
+        font-size: auto;
+        width: 100;
+    }
+    .top-nav .second{
+        display: none;
+    }
+    #projects .bigtitle{
+        font-size: 10vw;
+    }
+    #projects .p-1{
+        flex-flow: column;;
+    }
+
+    #projects .p-1 .container{
+        width: 100%;
+    }
+    #projects .p-1 .iframe{
+        height: 30vh;
+        width: 95vw;
+        margin:0;
+    }
+    #projects .p-1 .container .title{
+        font-size:10vw;
+        margin-top:5%;
+    }
+    #about .about-container .about-paragraph{
+        font-size:2rem;
+    }
+    html{
+        font-size:10px;
+    }
+    #contact .container .card-container{
+        flex-flow: column;
+        align-items: center;
+    }
+    #contact .container .card-container .card{
+        margin-bottom: 10%;
+        width: 70%;
+    }
+    footer div{
+        height: 5vh;
+    }
+    #contact .container .card-container .card{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: white;
+    }
+
 }
