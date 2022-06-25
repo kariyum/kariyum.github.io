@@ -216,12 +216,12 @@ function onMouseLeave() {
 //     window.scrollTo(0, 0);
 // }
 window.onload = function (){
-    // xhttp = new XMLHttpRequest();
-    // xhttp.open('GET', 'server.php');
-    // xhttp.send();
-    mobile=document.getElementById('mobile-id');
-    if (mobile.style.display=="none"){
-        console.log("mobile deteceted");
-    }
-    console.log(window.getComputedStyle(mobile).display);
+    xhttp = new XMLHttpRequest();
+    xhttp.open('GET', 'server.php');
+    xhttp.send();
+    // mobile=document.getElementById('mobile-id');
+    // if (mobile.style.display=="none"){
+    //     console.log("mobile deteceted");
+    // }
+    // console.log(window.getComputedStyle(mobile).display);
 }
