@@ -53,10 +53,10 @@ document.getElementById('start-id').addEventListener('click', ()=>{
 
 function nextFunction(){
     let steps = ['We will start by having one ant on the network. The <span style="color:red; font-weight:bold;">red</span> node.',
-                "<li>Define how likely will the ant choose the nearest node, that's the alpha variable.</li><div class='range-control'><label for=''>Alpha α&nbsp;</label><input type='range' name='' id='rangealpha' min=0 max=10 step=0.01><span id='alpha-value'></span></div>",
+                "<li>Define how likely will the ant choose the nearest node, that's the beta variable.</li><div class='range-control'><label for=''>Beta β&nbsp;</label><input type='range' name='' id='rangealpha' min=0 max=10 step=0.01><span id='alpha-value'></span></div>",
                 "",
                 "<li>Now that the ant has returned to it's starting node, we will add pheromone substance on its path to communicate the path cost to other ants.</li>",
-                "<li>Now we can define how likely will the ant follow the pheromone trail, that's the beta variable.</li>",
+                "<li>Now we can define how likely will the ant follow the pheromone trail, that's the alpha α variable.</li>",
                 "You can now define your own values and simulate the algorithm."
 
     ]
