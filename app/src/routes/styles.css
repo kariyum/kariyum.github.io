@@ -3,5 +3,7 @@
 :root {
 }
 body {
-	font-family: "Roboto Mono", monospace;
+	font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+	font-size: large;
+	-webkit-font-smoothing:antialiased;
 }

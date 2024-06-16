@@ -1,6 +1,7 @@
 <script>
 	// import welcome from '$lib/images/svelte-welcome.webp';
 	import ants from '$lib/project_assets/simulation/ants.mp4'
+	import maze from '$lib/project_assets/maze.mp4'
 </script>
 
 <svelte:head>
@@ -13,24 +14,25 @@
 		<h1>👋 Hi.</h1>
 		<!-- <h1>❓ Who</h1> -->
 		<p>
-			I'm Karim, a software engineer from North Africa, Tunisia.
-			I strive for writing programs that does accomplish something useful in a beautiful way
+			Karim - A software engineer from North Africa, Tunisia.
+			He writes programs that does accomplish something useful in a beautiful way.
+			He enjoys reading blogs & cycling 🚴🚴🚴
 			<!-- . (with a creative touch)
 			I like exploring new concepts and using them as much as possible daily. <br> -->
-			<dir></dir>
+			<!-- <dir></dir>
 			I strive for efficiency ⌛<br> 
 			I read and write blogs. <br>
-			And I love cycling 🚴.
+			And I love cycling 🚴. -->
 		</p>
 	</div>
 
 	<div class="introduction">
 		<!-- <h1><span style="color:orange">#</span> I simulate</h1> -->
-		<h1>🎨 I Visualize</h1>
+		<h1>🎨 I visualize.</h1>
 		<p>
 			During my time at the engineering school, I had been captivated with some of the concepts 
 			in class and so I spared some time to create some visualizations for them, deepening my 
-			understanding and sharing it with the class and upcoming generations.
+			understanding and sharing it with the class and club members.
 		</p>
 		
 		<dir>
@@ -43,23 +45,56 @@
 			<video controls preload="none" style="width:100%">
 				<source src={ants}>
 			</video>
-			<button>Read more</button>
+			<a href="/ant_colony_optimization/index.html"><button>Read more</button></a>
 		</dir>
 
-		<div>
-			<h2>🐪 Neural Drone</h2>
+		<dir>
+			<h2>🦋 Neural Drone</h2>
 			<p>
 				A simple neural network learning to keep the Drone steady for as long as possible using genetic algorithm
-				as the 
+				as the neural network optimizer.
 			</p>
-		</div>
+		</dir>
+
+		<dir>
+			<h2>🪱 Maze solver</h2>
+			<p>
+				This program is used to compare different heuristics visualizing steps taken one at a time.
+			</p>
+			<!-- svelte-ignore a11y-media-has-caption -->
+			<video controls preload="none" style="width:100%">
+				<source src={maze}>
+			</video>
+		</dir>
+	</div>
+	<div class="introduction">
+		<h1>🧑‍💻 I code.</h1>
+		<p>
+			Here's the list of the apps that I have implmented to fill some need
+		</p>
+		<ul>
+			<li>
+				Metrics and benchmarks
+			</li>
+			<li>
+				Expense tracker mobile app
+			</li>
+		</ul>
+	</div>
+	<div class="introduction">
+		<h1>📖 I read.</h1>
+		The following list contains my favorite blogs
+		<ul>
+			<li>Discord blog</li>
+			<li><a href="https://samwho.dev/load-balancing/">Load balancing visualized</a></li>
+		</ul>
 	</div>
 </section>
 
 <style>
 .introduction {
 	margin: 0 auto 0 auto;
-	max-width: 600px;
+	max-width: 800px;
 	margin-top: 4em;
 }
 </style>
