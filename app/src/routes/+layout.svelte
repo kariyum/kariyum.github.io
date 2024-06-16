@@ -4,9 +4,12 @@
 </script>
 
 <div class="app">
-	<Header />
+	
 
 	<main>
+		<div class="header">
+			<Header />
+		</div>
 		<slot />
 	</main>
 
@@ -16,5 +19,11 @@
 </div>
 
 <style>
-
+	main {
+		display: flex;
+		flex-direction: row-reverse;
+	}
+	.header {
+		width: 30%;
+	}
 </style>

@@ -11,12 +11,11 @@
 
 <section>
 	<div class="introduction">
-		<h1>👋 Hi.</h1>
+		<h1>Hi there 👋</h1>
 		<!-- <h1>❓ Who</h1> -->
 		<p>
-			Karim - A software engineer from North Africa, Tunisia.
-			He writes programs that does accomplish something useful in a beautiful way.
-			He enjoys reading blogs & cycling 🚴🚴🚴
+			I'm Karim, a freshly graduated software engineer, a gamer and a cyclist.
+			I'm here to share my journey and my passion towards CS.
 			<!-- . (with a creative touch)
 			I like exploring new concepts and using them as much as possible daily. <br> -->
 			<!-- <dir></dir>

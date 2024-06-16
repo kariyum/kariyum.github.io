@@ -40,9 +40,12 @@
 
 <style>
 	header {
+		position: sticky;
+		top: 4%;
+		/* float: right; */
 		margin: auto;
 		width: 40%;
-		margin-top: 5%;
+		/* margin-top: 5%; */
 		font-weight: 500;
 		font-size: 16px;
 	}
@@ -59,10 +62,10 @@
 		margin: 0;
 		display: flex;
 		width: 100%;
-		flex-direction: row;
+		flex-direction: column;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		align-items: center;
+		align-items: start;
 		list-style: none;
 	}
 
