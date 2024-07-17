@@ -2,36 +2,40 @@
 	import { page } from '$app/stores';
 	import linkedin from '$lib/images/linkedin.svg';
 	import github from '$lib/images/github.svg';
+	import lefthand from '$lib/images/lefthand.webp';
+	import righthand from '$lib/images/righthand.webp';
+	
 </script>
 
+<img class="righthand" src={righthand} alt="">
+<img class="lefthand" src={lefthand} alt="">
 <header>
-	<!-- <div class="name">
-		<h3>Karim</h3>
-		<h3>Ben Amara</h3>
-	</div> -->
 	<nav>
 		<ul>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
+			<!-- <li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
 				<a href="/about">⚙️ Favorite Projects</a>
+			</li> -->
+			<li>
+				<a href="/">🏠 Home</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">📝 Blogs</a>
+			<li>
+				<a href="#blogs">📝 Blogs</a>
 			</li>
 			<li>
 				<img src={github} alt="">
-				<a href="/about">
+				<a href="https://github.com/kariyum" target="_blank">
 					Github
 				</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
 				<img src={linkedin} alt="">
-				<a href="/about">
+				<a href="https://www.linkedin.com/in/karim-ben-amara-01282a1ba/" target="_blank">
 					LinkedIn
 				</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
+			<!-- <li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
 				<a href="/about">📑 Resume</a>
-			</li>
+			</li> -->
 		</ul>
 		
 	</nav>
@@ -39,19 +43,31 @@
 </header>
 
 <style>
+	.righthand {
+		position: absolute;
+		right: 0;
+		bottom: 0.1%;
+		width: 200px;
+	}
+
+	.lefthand {
+		position: absolute;
+		left: 0;
+		width: 120px;
+	}
 	header {
 		position: sticky;
 		top: 4%;
 		/* float: right; */
 		margin: auto;
 		width: 40%;
-		/* margin-top: 5%; */
+		margin-top: 75%;
 		font-weight: 500;
 		font-size: 16px;
 	}
 
 
-	img {
+	li > img {
 		/* width: 1.5em; */
 		width: 1.4em;
 		margin-right: 7px;
@@ -77,7 +93,7 @@
 		transition: 
 			background-color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95), 
 			border-bottom 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-		border: 2px solid white;
+		border: 2px solid transparent;
 	}
 
 	a {
@@ -88,7 +104,6 @@
 		/* text-transform: uppercase; */
 		letter-spacing: 0.1em;
 		text-decoration: none;
-
 	}
 
 	li:hover {
