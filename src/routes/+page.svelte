@@ -7,6 +7,7 @@
 	import github from '$lib/images/github.svg';
 	import drone_vid from '$lib/project_assets/drone/vid.mp4';
 	import drone_poster from '$lib/project_assets/drone/drone_poster.png';
+	import { base } from '$app/paths';
 </script>
 
 <svelte:head>
@@ -73,7 +74,7 @@
 			</video> -->
 			<p>
 				You can solve the problem with your own ACO configuration
-				<a href="/ant_colony_optimization/index.html" class="subtitle-link"> here </a>
+				<a href="{base}/ant_colony_optimization/index.html" class="subtitle-link"> here </a>
 				and if you would like to take a look at the code check the following
 				<a
 					href="https://github.com/kariyum/ant_colony_optimization.git"

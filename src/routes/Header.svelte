@@ -4,6 +4,7 @@
 	import github from '$lib/images/github.svg';
 	import lefthand from '$lib/images/lefthand.webp';
 	import righthand from '$lib/images/righthand.webp';
+	import { base } from '$app/paths';
 	
 </script>
 
@@ -16,7 +17,7 @@
 				<a href="/about">⚙️ Favorite Projects</a>
 			</li> -->
 			<li>
-				<a href="/">🏠 Home</a>
+				<a href="{base}/">🏠 Home</a>
 			</li>
 			<li>
 				<a href="#blogs">📝 Blogs</a>
