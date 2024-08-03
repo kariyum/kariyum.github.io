@@ -21,9 +21,9 @@
 			turning ideas into real life <span class="highlight">products</span> is my thing.
 		</h1>
 		<span style="color:gray"> (aka. feeding my curiosty and suiting my needs) </span>
+		<p>Basically, I'm a software engineer.</p>
 	</div>
 
-	<p>Basically, I'm a software engineer.</p>
 	<div class="introduction">
 		<h1>
 			<div>
@@ -193,6 +193,7 @@
 </section>
 
 <style>
+
 	.introduction {
 		margin: 0 auto 0 auto;
 		max-width: 800px;
