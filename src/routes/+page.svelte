@@ -7,7 +7,10 @@
 	import github from '$lib/images/github.svg';
 	import drone_vid from '$lib/project_assets/drone/vid.mp4';
 	import drone_poster from '$lib/project_assets/drone/drone_poster.png';
+	import HoverPeek from '../components/HoverPeek.svelte';
 	import { base } from '$app/paths';
+	import Tag from '../components/Tag.svelte';
+	export let data;
 </script>
 
 <svelte:head>
@@ -21,7 +24,7 @@
 			turning ideas into real life <span class="highlight">products</span> is my thing.
 		</h1>
 		<span style="color:gray"> (aka. feeding my curiosty and suiting my needs) </span>
-		<p>Basically, I'm a software engineer.</p>
+		<p>Basically, I'm a software engineer, from Tunisia.</p>
 	</div>
 
 	<div class="introduction">
@@ -53,13 +56,17 @@
 		</p>
 
 		<dir>
-			<h1>
-				<div>
-					<span> ## </span>
-					🐜 Ant Colony Optimizations (ACO)
-				</div>
-			</h1>
-
+			<HoverPeek video={ants}>
+				<h1>
+					<div>
+						<span> ## </span>
+						🐜 Ant Colony Optimizations (ACO)
+					</div>
+				</h1>
+			</HoverPeek>
+			<!-- <Tag>self-initiated</Tag> -->
+			<Tag>heuristics</Tag>
+			<Tag>search-algorithms</Tag>
 			<p>
 				Ant Colony Optimization is a metaheuristic approach that is well known as a solution
 				approximator for the NP-Complete <a
@@ -70,7 +77,7 @@
 			</p>
 			<!-- svelte-ignore a11y-media-has-caption -->
 			<!-- <video muted controls preload="none" style="width:100%" poster={ants_poster}>
-			<source src={ants} />
+				<source src={ants} />
 			</video> -->
 			<p>
 				You can solve the problem with your own ACO configuration
@@ -84,16 +91,36 @@
 					github repo
 				</a>.
 			</p>
+			<div>
+				<ul>
+					<li>
+						Development time: 2 weeks
+					</li>
+					<li>
+						Year: 2022 - Just after ending 2nd year of my engineering school
+					</li>
+					<li>
+						Technologies: Javascript
+					</li>
+				</ul>
+			</div>
 		</dir>
 
 		<dir>
-			<h1>
-				<div>
-					<span>##</span>
-					Neural Drone
-				</div>
-			</h1>
-			Neural Networks ✖️ Genetic Algorithm
+			<HoverPeek video={drone_vid}>
+				<h1>
+					<div>
+						<span>##</span>
+						Neural Drone
+					</div>
+				</h1>
+			</HoverPeek>
+			<Tag>heuristics</Tag>
+			<Tag>genetic-algorithm</Tag>
+			<Tag>neural network</Tag>
+			<p>
+				Neural Networks ✖️ Genetic Algorithm
+			</p>
 			<p>
 				A simple neural network learning to control a Drone and avoid crushing (keep the drone
 				within the screen) for as long as possible using genetic algorithm as the neural network
@@ -104,11 +131,21 @@
 					>github repo</a
 				>
 			</p>
-
-			<!-- <video muted controls preload="none" style="width:100%" poster={drone_poster}>
-			<source src={drone_vid} />
-			</video> -->
+			<div>
+				<ul>
+					<li>
+						Development time: 1 month
+					</li>
+					<li>
+						Year: December 2022 - January of 2023
+					</li>
+					<li>
+						Technologies: Python - Pygame
+					</li>
+				</ul>
+			</div>
 		</dir>
+
 		<dir>
 			<h1>
 				<div>
@@ -116,27 +153,45 @@
 					Single Machine Scheduling Problem
 				</div>
 			</h1>
+			<Tag>heuristics</Tag>
+			<Tag>genetic-algorithm</Tag>
+			<Tag>branch&bound</Tag>
+			<Tag>ant-colony-optimization</Tag>
 			<p>
-				Using different heuristics and meta-heuristics approaches to solve the NP-HARD problem. Comparing
-				their speed and best found solution.
+				Using different heuristics and meta-heuristics approaches to solve the NP-HARD problem.
+				Comparing their speed and best found solution.
 			</p>
 			<p>
-				Find more here <a href="https://github.com/kariyum/single_machine_scheduling_problem" class="subtitle-link"
-					>github repo</a
+				Find more here <a
+					href="https://github.com/kariyum/single_machine_scheduling_problem"
+					class="subtitle-link">github repo</a
 				>
 			</p>
-
-			<!-- <video muted controls preload="none" style="width:100%" poster={drone_poster}>
-			<source src={drone_vid} />
-			</video> -->
+			<div>
+				<ul>
+					<li>
+						Development time: 1 month
+					</li>
+					<li>
+						Year: January of 2023
+					</li>
+					<li>
+						Technologies: Python - Matplotlib
+					</li>
+				</ul>
+			</div>
 		</dir>
 		<dir>
-			<h1>
-				<div>
-					<span>##</span>
-					Maze solver
-				</div>
-			</h1>
+			<HoverPeek video={maze}>
+				<h1>
+					<div>
+						<span>##</span>
+						Maze solver
+					</div>
+				</h1>
+			</HoverPeek>
+			<Tag>heuristics</Tag>
+			<Tag>maze</Tag>
 			<p>
 				This program is used to compare different heuristics and visualizing them while trying to
 				find a path between a starting point and a random point.
@@ -146,6 +201,17 @@
 					>github repo</a
 				>
 			</p>
+			<ul>
+				<li>
+					Development time: 2 weeks
+				</li>
+				<li>
+					Year: April of 2022
+				</li>
+				<li>
+					Technologies: Python
+				</li>
+			</ul>
 			<!-- svelte-ignore a11y-media-has-caption -->
 			<!-- <video controls preload="none" style="width:100%" poster={maze_poster}>
 				<source src={maze} />
@@ -164,14 +230,19 @@
 			<li>
 				Metric Analysis
 				<dir>
-					A web app that accepts metrics streaming and neatly displays them in a sorted table adding
-					in some valuable information such as the min, max, average and cpu_usage.
+					<p>
+						A web app that accepts metrics streaming and neatly displays them in a sorted table adding
+						in some valuable information such as the min, max, average and cpu_usage.
+					</p>
+					<p>
+						I felt the need of such an app to effectively find bottlenecks in a webservice at my work.
+					</p>
 				</dir>
 			</li>
 			<li>
 				Expense Tracker
-				<dir> 
-					Mobile app useful to track one's day to day expenses, extract some valuable information 
+				<dir>
+					Mobile app useful to track one's day to day expenses, extract some valuable information
 					with some aggregations and graphs.
 				</dir>
 			</li>
@@ -193,7 +264,6 @@
 </section>
 
 <style>
-
 	.introduction {
 		margin: 0 auto 0 auto;
 		max-width: 800px;
@@ -217,7 +287,10 @@
 	dir {
 		height: fit-content;
 	}
-
+	h1 {
+		width: fit-content;
+		margin-bottom: 0;
+	}
 	h1 > div > span {
 		color: orange;
 	}
