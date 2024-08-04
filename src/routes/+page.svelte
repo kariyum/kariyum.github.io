@@ -56,7 +56,7 @@
 		</p>
 
 		<dir>
-			<HoverPeek video={ants}>
+			<HoverPeek videoPath={ants}>
 				<h1>
 					<div>
 						<span> ## </span>
@@ -101,7 +101,7 @@
 		</dir>
 
 		<dir>
-			<HoverPeek video={drone_vid}>
+			<HoverPeek videoPath={drone_vid}>
 				<h1>
 					<div>
 						<span>##</span>
@@ -162,7 +162,7 @@
 			</div>
 		</dir>
 		<dir>
-			<HoverPeek video={maze}>
+			<HoverPeek videoPath={maze}>
 				<h1>
 					<div>
 						<span>##</span>
@@ -199,7 +199,7 @@
 				Suiting my needs
 			</div>
 		</h1>
-		<p>Here's the list of the apps that I have implmented to fill some need</p>
+		<p>Here's a list of some apps that I have implmented to fill some need</p>
 		<dir>
 			<h1>
 				<div>
@@ -251,7 +251,7 @@
 			The following list contains my favorite blogs
 		</p>
 		<ul>
-			<li>Discord blog</li>
+			<li><a href="https://discord.com/blog/why-discord-is-switching-from-go-to-rust/">Discord blog</a></li>
 			<li><a href="https://samwho.dev/load-balancing/">Load balancing visualized</a></li>
 		</ul>
 	</div>

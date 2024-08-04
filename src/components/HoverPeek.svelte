@@ -1,11 +1,26 @@
 <script>
-	import ants_poster from '$lib/project_assets/simulation/ants.png';
-	import ants from '$lib/project_assets/simulation/ants.mp4';
-	import Popup from './Popup.svelte';
 	import { onMount } from 'svelte';
-	export let video;
+	export let videoPath;
+
 	let isHovered = false;
 	let showPopup = false;
+	/**
+	 * @type {HTMLSourceElement | null}
+	 */
+	let src = null;
+	/**
+	 * @type {HTMLDivElement}
+	 */
+	let popup_container;
+	/**
+	 * @type {HTMLDivElement}
+	 */
+	let hover_container;
+
+	/**
+	 * @type {HTMLVideoElement}
+	 */
+	let videoTag;
 
 	/**
 	 * @type {number}
@@ -23,7 +38,12 @@
 		isHovered = true;
 		x = event.pageX + 5;
 		y = event.pageY + 5;
+		videoTag.play();
+		if (src) {
+			hover_container.appendChild(videoTag);
+		}
 	}
+
 	/**
 	 * @param {{ pageX: number; pageY: number; }} event
 	 */
@@ -33,44 +53,81 @@
 	}
 	function mouseLeave() {
 		isHovered = false;
-		// showPopup = false;
+		hover_container.removeChild(videoTag);
 	}
-
-	function onClick() {
+	function openPopup() {
 		showPopup = true;
+		if (src && videoTag) {
+			popup_container.appendChild(videoTag);
+			videoTag.controls = true;
+			videoTag.width = 1000;
+		}
 	}
 
+	function closePopup() {
+		showPopup = false;
+		popup_container.removeChild(videoTag);
+		videoTag.controls = false;
+		videoTag.width = 800;
+	}
+
+	onMount(() => {
+		/**
+		 * @type {HTMLSourceElement}
+		 */
+		src = document.createElement('source');
+		src.src = videoPath;
+		videoTag = document.createElement('video');
+		videoTag.appendChild(src);
+		videoTag.autoplay = true;
+		videoTag.preload = 'none';
+		videoTag.muted = true;
+		videoTag.width = 800;
+	});
+	$: {
+		if (!showPopup && !isHovered && videoTag) {
+			videoTag.pause();
+		}
+	}
 </script>
 
-<div
+<button
 	on:mouseover={mouseOver}
 	on:mouseleave={mouseLeave}
 	on:mousemove={mouseMove}
 	class="outer-container"
+	on:click={openPopup}
+	on:focus={() => (isHovered = true)}
 >
 	<slot />
-</div>
+</button>
 
-{#if showPopup}
-	<div class="container">
-		<div class="slot">
-			<video muted autoplay preload="none" style="width:100%;">
-				<source src={video} />
-			</video>
-		</div>
+<button class="container" style="display: {showPopup ? 'block' : 'None'};" on:click={closePopup}>
+	<div class="slot">
+		<div bind:this={popup_container}></div>
 	</div>
-{:else}
-	<div style="top: {y}px; left: {x}px; display:{isHovered ? 'block' : 'none'};" class="tooltip">
-		<video muted autoplay preload="none" style="width:100%;">
-			<source src={video} />
-		</video>
-	</div>
-{/if}
+</button>
+<div
+	style="top: {y}px; left: {x}px; display:{isHovered ? 'block' : 'none'};"
+	class="tooltip"
+	bind:this={hover_container}
+></div>
 
 <style>
-	/* .outer-container {
+	button {
+		display: block;
+		width: 100%;
+		background: none;
+		color: inherit;
+		border: none;
+		padding: 0;
+		font: inherit;
 		cursor: pointer;
-	} */
+		outline: inherit;
+	}
+	.outer-container {
+		cursor: pointer;
+	}
 	.tooltip {
 		display: None;
 		border: 1px solid #ddd;
@@ -79,8 +136,8 @@
 		border-radius: 4px;
 		padding: 4px;
 		position: absolute;
-		max-width: 40%;
 		width: fit-content;
+		z-index: 1;
 	}
 
 	.container {
@@ -96,11 +153,13 @@
 	}
 
 	.slot {
-		padding: 1%;
-		background-color: white;
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		transform: translate(-50%, -50%); /* Yep! */
+		transform: translate(-50%, -50%);
+	}
+
+	.video-styles {
+		width: 40%;
 	}
 </style>
