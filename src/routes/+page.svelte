@@ -93,15 +93,9 @@
 			</p>
 			<div>
 				<ul>
-					<li>
-						Development time: 2 weeks
-					</li>
-					<li>
-						Year: 2022 - Just after ending 2nd year of my engineering school
-					</li>
-					<li>
-						Technologies: Javascript
-					</li>
+					<li>Development time: 2 weeks</li>
+					<li>Date: 2022 - Just after ending 2nd year of my engineering school</li>
+					<li>Made with: Javascript</li>
 				</ul>
 			</div>
 		</dir>
@@ -118,9 +112,7 @@
 			<Tag>heuristics</Tag>
 			<Tag>genetic-algorithm</Tag>
 			<Tag>neural network</Tag>
-			<p>
-				Neural Networks ✖️ Genetic Algorithm
-			</p>
+			<p>Neural Networks ✖️ Genetic Algorithm</p>
 			<p>
 				A simple neural network learning to control a Drone and avoid crushing (keep the drone
 				within the screen) for as long as possible using genetic algorithm as the neural network
@@ -133,15 +125,9 @@
 			</p>
 			<div>
 				<ul>
-					<li>
-						Development time: 1 month
-					</li>
-					<li>
-						Year: December 2022 - January of 2023
-					</li>
-					<li>
-						Technologies: Python - Pygame
-					</li>
+					<li>Development time: 1 month</li>
+					<li>Date: December 2022 - January of 2023</li>
+					<li>Made with: Python - Pygame</li>
 				</ul>
 			</div>
 		</dir>
@@ -158,7 +144,7 @@
 			<Tag>branch&bound</Tag>
 			<Tag>ant-colony-optimization</Tag>
 			<p>
-				Using different heuristics and meta-heuristics approaches to solve the NP-HARD problem.
+				Leveraging different heuristics and meta-heuristics approaches to solve the NP-HARD problem.
 				Comparing their speed and best found solution.
 			</p>
 			<p>
@@ -169,15 +155,9 @@
 			</p>
 			<div>
 				<ul>
-					<li>
-						Development time: 1 month
-					</li>
-					<li>
-						Year: January of 2023
-					</li>
-					<li>
-						Technologies: Python - Matplotlib
-					</li>
+					<li>Development time: 1 month</li>
+					<li>Date: January of 2023</li>
+					<li>Made with: Python - Matplotlib</li>
 				</ul>
 			</div>
 		</dir>
@@ -202,15 +182,9 @@
 				>
 			</p>
 			<ul>
-				<li>
-					Development time: 2 weeks
-				</li>
-				<li>
-					Year: April of 2022
-				</li>
-				<li>
-					Technologies: Python
-				</li>
+				<li>Development time: 2 weeks</li>
+				<li>Date: April of 2022</li>
+				<li>Made with: Python</li>
 			</ul>
 			<!-- svelte-ignore a11y-media-has-caption -->
 			<!-- <video controls preload="none" style="width:100%" poster={maze_poster}>
@@ -226,27 +200,45 @@
 			</div>
 		</h1>
 		<p>Here's the list of the apps that I have implmented to fill some need</p>
-		<ul>
-			<li>
-				Metric Analysis
-				<dir>
-					<p>
-						A web app that accepts metrics streaming and neatly displays them in a sorted table adding
-						in some valuable information such as the min, max, average and cpu_usage.
-					</p>
-					<p>
-						I felt the need of such an app to effectively find bottlenecks in a webservice at my work.
-					</p>
-				</dir>
-			</li>
-			<li>
-				Expense Tracker
-				<dir>
-					Mobile app useful to track one's day to day expenses, extract some valuable information
-					with some aggregations and graphs.
-				</dir>
-			</li>
-		</ul>
+		<dir>
+			<h1>
+				<div>
+					<span>##</span>
+					Metrics analysis
+				</div>
+			</h1>
+			<Tag>web-app</Tag>
+			<Tag>benchmark</Tag>
+			<Tag>analysis</Tag>
+			<p>
+				A web app that accepts metrics streaming and neatly displays them in a sorted table adding
+				in some valuable information such as the min, max, average and cpu_usage.
+			</p>
+			<p>
+				I felt the need of such an app to effectively find bottlenecks in a webservice at work.
+			</p>
+			<ul>
+				<li>Development time: 2 weeks</li>
+				<li>Date: April of 2024</li>
+				<li>Technologies: Svelte</li>
+			</ul>
+			<h1>
+				<div>
+					<span>##</span>
+					Expense Tracker
+				</div>
+			</h1>
+			<Tag>mobile-app</Tag>
+			<Tag>tracking</Tag>
+			<p>
+				Mobile app useful to track one's day to day expenses, extract some valuable information with
+				some aggregations and graphs.
+			</p>
+			<ul>
+				<li>Start date: June of 2023</li>
+				<li>Made with: Flutter</li>
+			</ul>
+		</dir>
 	</div>
 	<div class="introduction" id="blogs">
 		<h1>
@@ -255,11 +247,32 @@
 				Favorite blogs
 			</div>
 		</h1>
-		The following list contains my favorite blogs
+		<p>
+			The following list contains my favorite blogs
+		</p>
 		<ul>
 			<li>Discord blog</li>
 			<li><a href="https://samwho.dev/load-balancing/">Load balancing visualized</a></li>
 		</ul>
+	</div>
+
+	<div class="introduction">
+		<div style="display: flex; align-items:center;">
+			<h1 style="display: inline; margin:0;">
+				<div style="display: inline; margin:0;">
+					<span>#</span>
+					Reunited
+				</div>
+			</h1>
+			<span>&nbsp;- a fun little game!</span>
+		</div>
+		<p>
+			I made this game back in december 2020 when covid-19 was everywhere and we had to be isolated at home.
+		</p>
+		<a href="https://play.unity.com/en/games/67ca8ced-59e7-4d36-bc9b-9a62b0b2b88d/reunited">
+			Play the game!
+		</a>
+		Move with arrow keys and jump with space key.
 	</div>
 </section>
 
@@ -279,7 +292,6 @@
 
 	.highlight {
 		display: inline;
-		/* background: rgb(205, 221, 255); */
 		text-decoration-line: underline;
 		text-decoration-color: rgb(205, 221, 255);
 		text-decoration-style: wavy;
