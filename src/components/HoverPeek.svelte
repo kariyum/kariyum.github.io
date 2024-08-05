@@ -53,7 +53,9 @@
 	}
 	function mouseLeave() {
 		isHovered = false;
-		hover_container.removeChild(videoTag);
+		if (hover_container.firstChild) {
+			hover_container.removeChild(videoTag);
+		}
 	}
 	function openPopup() {
 		showPopup = true;
@@ -103,20 +105,22 @@
 </button>
 
 <button class="container" style="display: {showPopup ? 'block' : 'None'};" on:click={closePopup}>
-	<div class="slot">
-		<div bind:this={popup_container}></div>
-	</div>
+	<button class="slot" on:click={(event) => {event.stopPropagation();}}>
+		<div bind:this={popup_container} class="default-cursor"></div>
+	</button>
 </button>
 <div
 	style="top: {y}px; left: {x}px; display:{isHovered ? 'block' : 'none'};"
-	class="tooltip"
+	class="tooltip default-cursor"
 	bind:this={hover_container}
 ></div>
 
 <style>
+	.default-cursor {
+		cursor: default;
+	}
 	button {
 		display: block;
-		width: 100%;
 		background: none;
 		color: inherit;
 		border: none;
