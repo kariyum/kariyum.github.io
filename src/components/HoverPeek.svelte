@@ -1,7 +1,18 @@
 <script>
-	import { onMount } from 'svelte';
 	export let videoPath;
 
+	import { onMount } from 'svelte';
+	import { tweened } from 'svelte/motion';
+	import { cubicOut } from 'svelte/easing';
+
+	let coords = tweened(
+		{ x: undefined || 0, y: undefined || 0 },
+		{
+			duration: 400,
+			easing: cubicOut
+		}
+	);
+	let initialized = false;
 	let isHovered = false;
 	let showPopup = false;
 	/**
@@ -35,12 +46,23 @@
 	 * @param {{ pageX: number; pageY: number; }} event
 	 */
 	function mouseOver(event) {
+		console.log('mouse over!');
 		isHovered = true;
-		x = event.pageX + 5;
-		y = event.pageY + 5;
+		x = event.pageX + 10;
+		y = event.pageY + 10;
 		videoTag.play();
 		if (src) {
 			hover_container.appendChild(videoTag);
+		}
+		if (!initialized) {
+			coords = tweened(
+				{ x: x, y: y },
+				{
+					duration: 400,
+					easing: cubicOut
+				}
+			);
+			initialized = true;
 		}
 	}
 
@@ -48,10 +70,15 @@
 	 * @param {{ pageX: number; pageY: number; }} event
 	 */
 	function mouseMove(event) {
-		x = event.pageX + 5;
-		y = event.pageY + 5;
+		x = event.pageX + 10;
+		y = event.pageY + 10;
+		coords.set({ x: event.pageX + 10, y: event.pageY + 10 });
+		const min = (/** @type {number} */ a, /** @type {number} */ b) => a < b ? a : b;
+		videoTag.width = min(document.body.clientWidth * 0.4, ((document.body.clientWidth - 20) - x));
 	}
+	
 	function mouseLeave() {
+		console.log('mouse leave!');
 		isHovered = false;
 		if (hover_container.firstChild) {
 			hover_container.removeChild(videoTag);
@@ -70,7 +97,7 @@
 		showPopup = false;
 		popup_container.removeChild(videoTag);
 		videoTag.controls = false;
-		videoTag.width = 800;
+		videoTag.width = window.screen.availWidth * 0.4;
 	}
 
 	onMount(() => {
@@ -84,7 +111,7 @@
 		videoTag.autoplay = true;
 		videoTag.preload = 'none';
 		videoTag.muted = true;
-		videoTag.width = 800;
+		videoTag.width = window.screen.availWidth * 0.4;
 	});
 	$: {
 		if (!showPopup && !isHovered && videoTag) {
@@ -100,17 +127,23 @@
 	class="outer-container"
 	on:click={openPopup}
 	on:focus={() => (isHovered = true)}
+	style="width:100%;"
 >
-	<slot />
+<slot/>
 </button>
 
 <button class="container" style="display: {showPopup ? 'block' : 'None'};" on:click={closePopup}>
-	<button class="slot" on:click={(event) => {event.stopPropagation();}}>
+	<button
+		class="slot"
+		on:click={(event) => {
+			event.stopPropagation();
+		}}
+	>
 		<div bind:this={popup_container} class="default-cursor"></div>
 	</button>
 </button>
 <div
-	style="top: {y}px; left: {x}px; display:{isHovered ? 'block' : 'none'};"
+	style="top: {$coords.y}px; left: {$coords.x}px; display:{isHovered ? 'block' : 'none'};"
 	class="tooltip default-cursor"
 	bind:this={hover_container}
 ></div>
@@ -133,6 +166,7 @@
 		cursor: pointer;
 	}
 	.tooltip {
+		pointer-events:none;
 		display: None;
 		border: 1px solid #ddd;
 		box-shadow: 1px 1px 1px #ddd;
@@ -150,7 +184,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: rgba(0, 0, 0, 0.1);
 		-webkit-backdrop-filter: blur(5px);
 		backdrop-filter: blur(2px);
 		z-index: 1;
