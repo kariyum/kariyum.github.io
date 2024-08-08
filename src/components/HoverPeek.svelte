@@ -73,10 +73,8 @@
 		x = event.pageX + 10;
 		y = event.pageY + 10;
 		coords.set({ x: event.pageX + 10, y: event.pageY + 10 });
-		const min = (/** @type {number} */ a, /** @type {number} */ b) => a < b ? a : b;
-		videoTag.width = min(document.body.clientWidth * 0.4, ((document.body.clientWidth - 20) - x));
 	}
-	
+
 	function mouseLeave() {
 		console.log('mouse leave!');
 		isHovered = false;
@@ -97,7 +95,7 @@
 		showPopup = false;
 		popup_container.removeChild(videoTag);
 		videoTag.controls = false;
-		videoTag.width = window.screen.availWidth * 0.4;
+		videoTag.width = document.body.clientWidth * 0.4;
 	}
 
 	onMount(() => {
@@ -111,12 +109,17 @@
 		videoTag.autoplay = true;
 		videoTag.preload = 'none';
 		videoTag.muted = true;
-		videoTag.width = window.screen.availWidth * 0.4;
+		videoTag.width = document.body.clientWidth * 0.4;
 	});
 	$: {
 		if (!showPopup && !isHovered && videoTag) {
 			videoTag.pause();
 		}
+	}
+	const min = (/** @type {number} */ a, /** @type {number} */ b) => a < b ? a : b;
+	$: {
+		if (videoTag) 
+		videoTag.width = min(document.body.clientWidth * 0.4, ((document.body.clientWidth - 20) - $coords.x));
 	}
 </script>
 
