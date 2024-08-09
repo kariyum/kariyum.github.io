@@ -4,7 +4,8 @@
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
-
+	import { fade } from 'svelte/transition';
+	
 	let coords = tweened(
 		{ x: undefined || 0, y: undefined || 0 },
 		{
@@ -12,9 +13,55 @@
 			easing: cubicOut
 		}
 	);
+	let size = tweened(
+		{ width: undefined || 0 },
+		{
+			duration: 0,
+			easing: cubicOut
+		}
+	);
+	let popupSize = tweened(
+		{ width: undefined || 0 },
+		{
+			duration: 400,
+			easing: cubicOut
+		}
+	);
+	function initTweens() {
+		initialized = false;
+		coords = tweened(
+			{ x: undefined || 0, y: undefined || 0 },
+			{
+				duration: 400,
+				easing: cubicOut
+			}
+		);
+		size = tweened(
+			{ width: undefined || 0 },
+			{
+				duration: 0,
+				easing: cubicOut
+			}
+		);
+		popupSize = tweened(
+			{ width: undefined || 0 },
+			{
+				duration: 400,
+				easing: cubicOut
+			}
+		);
+	}
 	let initialized = false;
 	let isHovered = false;
 	let showPopup = false;
+	/**
+	 * @type {number | null}
+	 */
+	let clientWidth = null;
+	/**
+	 * @type {number | null}
+	 */
+	let clientHeight = null;
 	/**
 	 * @type {HTMLSourceElement | null}
 	 */
@@ -76,26 +123,26 @@
 	}
 
 	function mouseLeave() {
-		console.log('mouse leave!');
 		isHovered = false;
-		if (hover_container.firstChild) {
+		if (hover_container.firstChild && !showPopup) {
 			hover_container.removeChild(videoTag);
 		}
 	}
-	function openPopup() {
+	function switchToPopup() {
 		showPopup = true;
 		if (src && videoTag) {
-			popup_container.appendChild(videoTag);
 			videoTag.controls = true;
-			videoTag.width = 1000;
+			popupSize.set({ width: 1000 });
 		}
 	}
 
 	function closePopup() {
 		showPopup = false;
-		popup_container.removeChild(videoTag);
 		videoTag.controls = false;
-		videoTag.width = document.body.clientWidth * 0.4;
+		if (hover_container.firstChild) {
+			hover_container.removeChild(videoTag);
+		}
+		initTweens();
 	}
 
 	onMount(() => {
@@ -110,16 +157,30 @@
 		videoTag.preload = 'none';
 		videoTag.muted = true;
 		videoTag.width = document.body.clientWidth * 0.4;
+		clientWidth = document.body.clientWidth;
+		clientHeight = document.body.clientHeight;
 	});
 	$: {
 		if (!showPopup && !isHovered && videoTag) {
 			videoTag.pause();
 		}
 	}
-	const min = (/** @type {number} */ a, /** @type {number} */ b) => a < b ? a : b;
+	const min = (/** @type {number} */ a, /** @type {number} */ b) => (a < b ? a : b);
 	$: {
-		if (videoTag) 
-		videoTag.width = min(document.body.clientWidth * 0.4, ((document.body.clientWidth - 20) - $coords.x));
+		// use subscribe methods on tweened for all of these.
+		if (clientWidth && !showPopup)
+			size.set({ width: min(clientWidth * 0.4, clientWidth - 20 - $coords.x) });
+		if (videoTag && !showPopup) videoTag.width = $size.width;
+		if (!showPopup) popupSize.set({ width: $size.width });
+		if (videoTag && showPopup) {
+			videoTag.width = $popupSize.width;
+			if (clientHeight) {
+				coords.set({
+					x: Math.round(window.innerWidth / 2 - videoTag.width / 2),
+					y: Math.round(window.innerHeight / 2 + window.scrollY - videoTag.offsetHeight / 2)
+				});
+			}
+		}
 	}
 </script>
 
@@ -128,25 +189,21 @@
 	on:mouseleave={mouseLeave}
 	on:mousemove={mouseMove}
 	class="outer-container"
-	on:click={openPopup}
+	on:click={switchToPopup}
 	on:focus={() => (isHovered = true)}
 	style="width:100%;"
 >
-<slot/>
+	<slot />
 </button>
+{#if showPopup}
+	<div class="container outer-container" on:click={closePopup} transition:fade={{ duration: 200 }}></div>
+{/if}
 
-<button class="container" style="display: {showPopup ? 'block' : 'None'};" on:click={closePopup}>
-	<button
-		class="slot"
-		on:click={(event) => {
-			event.stopPropagation();
-		}}
-	>
-		<div bind:this={popup_container} class="default-cursor"></div>
-	</button>
-</button>
 <div
-	style="top: {$coords.y}px; left: {$coords.x}px; display:{isHovered ? 'block' : 'none'};"
+	style="top: {$coords.y}px; left: {$coords.x}px; display:{isHovered || showPopup
+		? 'block'
+		: 'none'}; pointer-events: {showPopup ? 'all' : 'showPopup'}; 
+		pointer-events: {showPopup ? 'all;' : 'none'};"
 	class="tooltip default-cursor"
 	bind:this={hover_container}
 ></div>
@@ -168,8 +225,9 @@
 	.outer-container {
 		cursor: pointer;
 	}
+
 	.tooltip {
-		pointer-events:none;
+		
 		display: None;
 		border: 1px solid #ddd;
 		box-shadow: 1px 1px 1px #ddd;
@@ -178,7 +236,7 @@
 		padding: 4px;
 		position: absolute;
 		width: fit-content;
-		z-index: 1;
+		z-index: 3;
 	}
 
 	.container {
