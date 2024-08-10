@@ -5,7 +5,11 @@
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
-	
+
+	/**
+	 * @type {HTMLVideoElement}
+	 */
+	let videoTag;
 	let coords = tweened(
 		{ x: undefined || 0, y: undefined || 0 },
 		{
@@ -20,6 +24,8 @@
 			easing: cubicOut
 		}
 	);
+	const min = (/** @type {number} */ a, /** @type {number} */ b) => (a < b ? a : b);
+
 	let popupSize = tweened(
 		{ width: undefined || 0 },
 		{
@@ -27,6 +33,7 @@
 			easing: cubicOut
 		}
 	);
+
 	function initTweens() {
 		initialized = false;
 		coords = tweened(
@@ -43,6 +50,7 @@
 				easing: cubicOut
 			}
 		);
+
 		popupSize = tweened(
 			{ width: undefined || 0 },
 			{
@@ -50,6 +58,10 @@
 				easing: cubicOut
 			}
 		);
+		size.subscribe(({ width }) => {
+			if (videoTag) videoTag.width = width;
+			if (!showPopup) popupSize.set({ width: width });
+		});
 	}
 	let initialized = false;
 	let isHovered = false;
@@ -69,16 +81,7 @@
 	/**
 	 * @type {HTMLDivElement}
 	 */
-	let popup_container;
-	/**
-	 * @type {HTMLDivElement}
-	 */
 	let hover_container;
-
-	/**
-	 * @type {HTMLVideoElement}
-	 */
-	let videoTag;
 
 	/**
 	 * @type {number}
@@ -93,7 +96,6 @@
 	 * @param {{ pageX: number; pageY: number; }} event
 	 */
 	function mouseOver(event) {
-		console.log('mouse over!');
 		isHovered = true;
 		x = event.pageX + 10;
 		y = event.pageY + 10;
@@ -109,17 +111,24 @@
 					easing: cubicOut
 				}
 			);
+			coords.subscribe(({ x, y }) => {
+				size.set({ width: min((clientWidth || 0) * 0.4, (clientWidth || 0) - 20 - x) });
+			});
 			initialized = true;
 		}
+		coords.set({
+			x: x,
+			y: y
+		});
 	}
-
+	const max = (/** @type {number} */ a, /** @type {number} */ b) => a < b ? b : a;
 	/**
 	 * @param {{ pageX: number; pageY: number; }} event
 	 */
 	function mouseMove(event) {
 		x = event.pageX + 10;
 		y = event.pageY + 10;
-		coords.set({ x: event.pageX + 10, y: event.pageY + 10 });
+		coords.set({ x: event.pageX + 10, y: event.pageY + 10 - max(0, (videoTag.offsetHeight + y) - (clientHeight || 0) + 10 ) });
 	}
 
 	function mouseLeave() {
@@ -132,7 +141,8 @@
 		showPopup = true;
 		if (src && videoTag) {
 			videoTag.controls = true;
-			popupSize.set({ width: 1000 });
+			popupSize.set({ width: (clientWidth || 1920) * 1000 / 1920});
+			size.set({ width: (clientWidth || 1920) * 1000 / 1920 });
 		}
 	}
 
@@ -142,6 +152,7 @@
 		if (hover_container.firstChild) {
 			hover_container.removeChild(videoTag);
 		}
+		size.set({ width: min((clientWidth || 0) * 0.4, (clientWidth || 0) - 20 - x) });
 		initTweens();
 	}
 
@@ -160,30 +171,28 @@
 		clientWidth = document.body.clientWidth;
 		clientHeight = document.body.clientHeight;
 	});
+	size.subscribe(({ width }) => {
+		if (videoTag) videoTag.width = width;
+		if (!showPopup) popupSize.set({ width: width });
+	});
 	$: {
-		if (!showPopup && !isHovered && videoTag) {
+		if (videoTag && !showPopup && !isHovered) {
 			videoTag.pause();
-		}
-	}
-	const min = (/** @type {number} */ a, /** @type {number} */ b) => (a < b ? a : b);
-	$: {
-		// use subscribe methods on tweened for all of these.
-		if (clientWidth && !showPopup)
-			size.set({ width: min(clientWidth * 0.4, clientWidth - 20 - $coords.x) });
-		if (videoTag && !showPopup) videoTag.width = $size.width;
-		if (!showPopup) popupSize.set({ width: $size.width });
-		if (videoTag && showPopup) {
+		} else if (videoTag && showPopup) {
 			videoTag.width = $popupSize.width;
-			if (clientHeight) {
-				coords.set({
-					x: Math.round(window.innerWidth / 2 - videoTag.width / 2),
-					y: Math.round(window.innerHeight / 2 + window.scrollY - videoTag.offsetHeight / 2)
-				});
-			}
+			coords.set({
+				x: Math.round(window.innerWidth / 2 - videoTag.width / 2),
+				y: Math.round(window.innerHeight / 2 + window.scrollY - videoTag.offsetHeight / 2)
+			});
 		}
 	}
 </script>
-
+<!-- 
+<svelte:window on:wheel|nonpassive={e => {
+    if(showPopup)
+        e.preventDefault()
+}} /> 
+ -->
 <button
 	on:mouseover={mouseOver}
 	on:mouseleave={mouseLeave}
@@ -196,7 +205,7 @@
 	<slot />
 </button>
 {#if showPopup}
-	<div class="container outer-container" on:click={closePopup} transition:fade={{ duration: 200 }}></div>
+	<div class="container outer-container" on:click={closePopup} in:fade={{ duration: 200 }}></div>
 {/if}
 
 <div
@@ -227,7 +236,6 @@
 	}
 
 	.tooltip {
-		
 		display: None;
 		border: 1px solid #ddd;
 		box-shadow: 1px 1px 1px #ddd;
@@ -251,14 +259,4 @@
 		z-index: 1;
 	}
 
-	.slot {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-	}
-
-	.video-styles {
-		width: 40%;
-	}
 </style>

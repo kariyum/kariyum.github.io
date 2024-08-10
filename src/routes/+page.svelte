@@ -1,6 +1,7 @@
 <script>
 	// import welcome from '$lib/images/svelte-welcome.webp';
 	import ants from '$lib/project_assets/simulation/ants.mp4';
+	import reunited from '$lib/project_assets/reunited/reunited.mp4';
 	import ants_poster from '$lib/project_assets/simulation/ants.png';
 	import maze from '$lib/project_assets/maze/maze.mp4';
 	import maze_poster from '$lib/project_assets/maze/maze_preview.png';
@@ -251,21 +252,24 @@
 			The following list contains my favorite blogs
 		</p>
 		<ul>
-			<li><a href="https://discord.com/blog/why-discord-is-switching-from-go-to-rust/">Discord blog</a></li>
+			<li><a href="https://discord.com/blog/why-discord-is-switching-from-go-to-rust/">Why Discord is switching from go to rust</a></li>
+			<li><a href="https://discord.com/blog/how-discord-stores-billions-of-messages">How Discord stores billision of message</a></li>
 			<li><a href="https://samwho.dev/load-balancing/">Load balancing visualized</a></li>
 		</ul>
 	</div>
 
 	<div class="introduction">
-		<div style="display: flex; align-items:center;">
-			<h1 style="display: inline; margin:0;">
-				<div style="display: inline; margin:0;">
-					<span>#</span>
-					Reunited
-				</div>
-			</h1>
-			<span>&nbsp;- a fun little game!</span>
-		</div>
+		<HoverPeek videoPath={reunited}>
+			<div style="display: flex; align-items:center;">
+				<h1 style="display: inline; margin:0;">
+					<div style="display: inline; margin:0;">
+						<span>#</span>
+						Reunited
+					</div>
+				</h1>
+				<span>&nbsp;- a fun little game!</span>
+			</div>
+		</HoverPeek>
 		<p>
 			I made this game back in december 2020 when covid-19 was everywhere and we had to be isolated at home.
 		</p>
@@ -273,6 +277,11 @@
 			Play the game!
 		</a>
 		Move with arrow keys and jump with space key.
+		<p>
+			This project was the first project I have ever done. It is quite special for me because
+			it taught me that the most important aspect about working on projects 
+			is to start prototyping asap, decompose the ideas into small components and start from there.
+		</p>
 	</div>
 </section>
 
