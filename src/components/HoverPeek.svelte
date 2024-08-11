@@ -79,7 +79,7 @@
 	 */
 	let src = null;
 	/**
-	 * @type {HTMLDivElement}
+	 * @type {HTMLDivElement | null}
 	 */
 	let hover_container;
 
@@ -100,7 +100,7 @@
 		x = event.pageX + 10;
 		y = event.pageY + 10 - max(0, videoTag.offsetHeight + y - (clientHeight || 0) + 10);
 		videoTag.play();
-		if (src) {
+		if (src && hover_container) {
 			hover_container.appendChild(videoTag);
 		}
 		if (!initialized) {
@@ -113,6 +113,10 @@
 			);
 			coords.subscribe(({ x, y }) => {
 				size.set({ width: min((clientWidth || 0) * 0.4, (clientWidth || 0) - 20 - x) });
+				if (hover_container) {
+					hover_container.style.top = `${$coords.y}px`;
+					hover_container.style.left = `${$coords.x}px`;
+				}
 			});
 			initialized = true;
 		}
@@ -137,7 +141,7 @@
 
 	function mouseLeave() {
 		isHovered = false;
-		if (hover_container.firstChild && !showPopup) {
+		if (hover_container && hover_container.firstChild && !showPopup) {
 			hover_container.removeChild(videoTag);
 		}
 	}
@@ -153,7 +157,7 @@
 	function closePopup() {
 		showPopup = false;
 		videoTag.controls = false;
-		if (hover_container.firstChild) {
+		if (hover_container && hover_container.firstChild) {
 			hover_container.removeChild(videoTag);
 		}
 		size.set({ width: min((clientWidth || 0) * 0.4, (clientWidth || 0) - 20 - x) });
@@ -174,6 +178,24 @@
 		videoTag.width = document.body.clientWidth * 0.4;
 		clientWidth = document.body.clientWidth;
 		clientHeight = document.body.clientHeight;
+		let element = document.getElementById('hover_container');
+		if (!element) {
+			hover_container = document.createElement('div');
+			hover_container.id = "hover_container";
+			hover_container.style.position = "absolute";
+			hover_container.style.border = "1px solid #ddd";
+			hover_container.style.boxShadow = "1px 1px 1px #ddd";
+			hover_container.style.background = "white";
+			hover_container.style.borderRadius = "4px";
+			hover_container.style.padding = "4px";
+			hover_container.style.width = "fit-content";
+			hover_container.style.zIndex = "3";
+			document.body.appendChild(hover_container);
+		} else {
+			if (element instanceof HTMLDivElement) {
+				hover_container = element;
+			}
+		}
 	});
 	size.subscribe(({ width }) => {
 		if (videoTag) videoTag.width = width;
@@ -205,6 +227,12 @@
 				break;
 		}
 	}
+	$: {
+		if (hover_container) {
+			hover_container.style.display = isHovered || showPopup ? 'block' : 'none';
+			hover_container.style.pointerEvents = showPopup ? 'all' : 'none';
+		}
+	}
 </script>
 
 <!-- 
@@ -229,14 +257,16 @@
 	<div class="container outer-container" on:click={closePopup} in:fade={{ duration: 200 }}></div>
 {/if}
 
-<div
-	style="top: {$coords.y}px; left: {$coords.x}px; display:{isHovered || showPopup
-		? 'block'
-		: 'none'}; pointer-events: {showPopup ? 'all' : 'showPopup'}; 
-		pointer-events: {showPopup ? 'all;' : 'none'};"
+<!-- <div
+	style="
+		top: {$coords.y}px; 
+		left: {$coords.x}px; 
+		display:{isHovered || showPopup ? 'block' : 'none'}; 
+		pointer-events: {showPopup ? 'all' : 'showPopup'};
+		"
 	class="tooltip default-cursor"
 	bind:this={hover_container}
-></div>
+></div> -->
 
 <style>
 	.default-cursor {

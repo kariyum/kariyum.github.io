@@ -11,6 +11,7 @@
 	import HoverPeek from '../components/HoverPeek.svelte';
 	import { base } from '$app/paths';
 	import Tag from '../components/Tag.svelte';
+	import svgg from '$lib/project_assets/Untitled.svg';
 	export let data;
 </script>
 
@@ -55,7 +56,6 @@
 			class and so I spared some time to create some visualizations for them, deepening my
 			understanding and sharing it with the class.
 		</p>
-
 		<dir>
 			<HoverPeek videoPath={ants}>
 				<h1>
@@ -126,7 +126,7 @@
 			<p>
 				Find more here <a href="https://github.com/kariyum/neural_drone" class="subtitle-link"
 					>github repo</a
-				>
+				>.
 			</p>
 			<div>
 				<ul class="tool-list">
@@ -163,7 +163,7 @@
 				Find more here <a
 					href="https://github.com/kariyum/single_machine_scheduling_problem"
 					class="subtitle-link">github repo</a
-				>
+				>.
 			</p>
 			<div>
 				<ul class="tool-list">
@@ -173,6 +173,7 @@
 				</ul>
 			</div>
 		</dir>
+
 		<dir>
 			<HoverPeek videoPath={maze}>
 				<h1>
@@ -191,11 +192,13 @@
 			<p>
 				Find more here <a href="https://github.com/kariyum/maze-solver" class="subtitle-link"
 					>github repo</a
-				>
+				>.
 			</p>
 			<ul class="tool-list">
 				<li title="Development duration is 2 weeks.">⏱️ - <span class="tool">2 weeks</span></li>
-				<li title="Start date is at April of 2022">📅 - <span class="tool">April of 2022</span></li>
+				<li title="Start date is at April of 2022">
+					📅 - <span class="tool">April of 2022</span>
+				</li>
 				<li title="Made with">⚙️ - <span class="tool">Python</span></li>
 			</ul>
 		</dir>
@@ -246,8 +249,8 @@
 			</p>
 			<p>
 				Find more here <a href="https://github.com/kariyum/wallet" class="subtitle-link"
-					>github_repo</a
-				>
+					>github repo</a
+				>.
 			</p>
 			<ul class="tool-list">
 				<li title="Start date is June of 2023">📅 - <span class="tool">June of 2023</span></li>
@@ -339,7 +342,8 @@
 	}
 	dir {
 		height: fit-content;
-		margin-bottom: 3%;
+		padding-bottom: 3%;
+		margin: 0;
 	}
 	h1 {
 		width: fit-content;
