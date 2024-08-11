@@ -4,6 +4,7 @@
 	--beige: rgb(255, 246, 236);
 	--orange: rgb(255, 126, 52);
 	--blue: rgb(205, 221, 255);
+	--tool-blue: rgb(205, 221, 255, 0.5);
 }
 body {
 	font-family: Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;

@@ -90,13 +90,17 @@
 					class="subtitle-link"
 				>
 					github repo
-				</a>.
+				</a>
+				.
 			</p>
 			<div>
-				<ul>
-					<li>Development time: 2 weeks</li>
-					<li>Date: 2022 - Just after ending 2nd year of my engineering school</li>
-					<li>Made with: Javascript</li>
+				<ul class="tool-list">
+					<li title="Development duration is 2 weeks.">⏱️ - <span class="tool">2 weeks</span></li>
+					<li title="Start date">
+						📅 - <span class="tool">2022 - Just after ending 2nd year of my engineering school</span
+						>
+					</li>
+					<li title="Tools">⚙️ - <span class="tool">Javascript</span></li>
 				</ul>
 			</div>
 		</dir>
@@ -125,10 +129,17 @@
 				>
 			</p>
 			<div>
-				<ul>
-					<li>Development time: 1 month</li>
-					<li>Date: December 2022 - January of 2023</li>
-					<li>Made with: Python - Pygame</li>
+				<ul class="tool-list">
+					<li title="Development time is 1 month">⏱️ - <span class="tool">1 month</span></li>
+					<li title="Start date at mid december of 2022">
+						📅 - <span class="tool">December 2022 - January of 2023</span>
+					</li>
+					<li title="Made with">
+						⚙️ -
+						<span class="tool">Python</span>
+						-
+						<span class="tool">Pygame</span>
+					</li>
 				</ul>
 			</div>
 		</dir>
@@ -155,10 +166,10 @@
 				>
 			</p>
 			<div>
-				<ul>
-					<li>Development time: 1 month</li>
-					<li>Date: January of 2023</li>
-					<li>Made with: Python - Matplotlib</li>
+				<ul class="tool-list">
+					<li title="Development duration">⏱️ - <span class="tool">1 month</span></li>
+					<li title="Start date">📅 - <span class="tool">January of 2023</span></li>
+					<li title="Tools">⚙️ - <span class="tool">Python - Matplotlib</span></li>
 				</ul>
 			</div>
 		</dir>
@@ -182,15 +193,11 @@
 					>github repo</a
 				>
 			</p>
-			<ul>
-				<li>Development time: 2 weeks</li>
-				<li>Date: April of 2022</li>
-				<li>Made with: Python</li>
+			<ul class="tool-list">
+				<li title="Development duration is 2 weeks.">⏱️ - <span class="tool">2 weeks</span></li>
+				<li title="Start date is at April of 2022">📅 - <span class="tool">April of 2022</span></li>
+				<li title="Made with">⚙️ - <span class="tool">Python</span></li>
 			</ul>
-			<!-- svelte-ignore a11y-media-has-caption -->
-			<!-- <video controls preload="none" style="width:100%" poster={maze_poster}>
-				<source src={maze} />
-			</video> -->
 		</dir>
 	</div>
 	<div class="introduction">
@@ -215,14 +222,16 @@
 				A web app that accepts metrics streaming and neatly displays them in a sorted table adding
 				in some valuable information such as the min, max, average and cpu_usage.
 			</p>
-			<p>
-				I felt the need of such an app to effectively find bottlenecks in a webservice at work.
-			</p>
-			<ul>
-				<li>Development time: 2 weeks</li>
-				<li>Date: April of 2024</li>
-				<li>Technologies: Svelte</li>
+			<p>I felt the need of such an app to effectively find bottlenecks in a webservice at work.</p>
+			<ul class="tool-list">
+				<li title="Development time is 2 weeks.">⏱️ - <span class="tool">2 weeks</span></li>
+				<li title="Start date is at mounth April of 2024">
+					📅 - <span class="tool">April of 2024</span>
+				</li>
+				<li title="Tools">⚙️ - <span class="tool">Svelte</span></li>
 			</ul>
+		</dir>
+		<dir>
 			<h1>
 				<div>
 					<span>##</span>
@@ -235,9 +244,14 @@
 				Mobile app useful to track one's day to day expenses, extract some valuable information with
 				some aggregations and graphs.
 			</p>
-			<ul>
-				<li>Start date: June of 2023</li>
-				<li>Made with: Flutter</li>
+			<p>
+				Find more here <a href="https://github.com/kariyum/wallet" class="subtitle-link"
+					>github_repo</a
+				>
+			</p>
+			<ul class="tool-list">
+				<li title="Start date is June of 2023">📅 - <span class="tool">June of 2023</span></li>
+				<li title="Made with">⚙️ - <span class="tool">Flutter</span></li>
 			</ul>
 		</dir>
 	</div>
@@ -248,12 +262,18 @@
 				Favorite blogs
 			</div>
 		</h1>
-		<p>
-			The following list contains my favorite blogs
-		</p>
+		<p>The following list contains my favorite blogs</p>
 		<ul>
-			<li><a href="https://discord.com/blog/why-discord-is-switching-from-go-to-rust/">Why Discord is switching from go to rust</a></li>
-			<li><a href="https://discord.com/blog/how-discord-stores-billions-of-messages">How Discord stores billision of message</a></li>
+			<li>
+				<a href="https://discord.com/blog/why-discord-is-switching-from-go-to-rust/"
+					>Why Discord is switching from go to rust</a
+				>
+			</li>
+			<li>
+				<a href="https://discord.com/blog/how-discord-stores-billions-of-messages"
+					>How Discord stores billision of message</a
+				>
+			</li>
 			<li><a href="https://samwho.dev/load-balancing/">Load balancing visualized</a></li>
 		</ul>
 	</div>
@@ -271,25 +291,37 @@
 			</div>
 		</HoverPeek>
 		<p>
-			I made this game back in december 2020 when covid-19 was everywhere and we had to be isolated at home.
+			I made this game back in december 2020 when covid-19 was everywhere and we had to be isolated
+			at home.
 		</p>
 		<a href="https://play.unity.com/en/games/67ca8ced-59e7-4d36-bc9b-9a62b0b2b88d/reunited">
 			Play the game!
 		</a>
 		Move with arrow keys and jump with space key.
 		<p>
-			This project was the first project I have ever done. It is quite special for me because
-			it taught me that the most important aspect about working on projects 
-			is to start prototyping asap, decompose the ideas into small components and start from there.
+			This project was the first project I have ever done. It is quite special for me because it
+			taught me that the most important aspect about working on projects is to start prototyping
+			asap, decompose the ideas into small components and just do it.
 		</p>
 	</div>
 </section>
 
 <style>
+	.tool-list {
+		list-style: none;
+		margin: 0;
+		padding-left: 1%;
+	}
+	.tool {
+		/* color: #3198fc; */
+		/* font-weight: bold; */
+		font-style: italic;
+		/* background-color: var(--tool-blue); */
+	}
 	.introduction {
 		margin: 0 auto 0 auto;
 		max-width: 800px;
-		margin-top: 4em;
+		margin-top: 2em;
 	}
 
 	.slogan {
@@ -307,10 +339,12 @@
 	}
 	dir {
 		height: fit-content;
+		margin-bottom: 3%;
 	}
 	h1 {
 		width: fit-content;
 		margin-bottom: 0;
+		margin-top: 0;
 	}
 	h1 > div > span {
 		color: orange;
@@ -339,7 +373,8 @@
 	.subtitle-link {
 		text-decoration: underline;
 		font-style: italic;
-		color: black;
+		color: rgb(41, 79, 160);
+		font-weight: 500;
 	}
 
 	button {

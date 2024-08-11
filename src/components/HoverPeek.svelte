@@ -24,7 +24,6 @@
 			easing: cubicOut
 		}
 	);
-	const min = (/** @type {number} */ a, /** @type {number} */ b) => (a < b ? a : b);
 
 	let popupSize = tweened(
 		{ width: undefined || 0 },
@@ -34,6 +33,7 @@
 		}
 	);
 
+	const min = (/** @type {number} */ a, /** @type {number} */ b) => (a < b ? a : b);
 	function initTweens() {
 		initialized = false;
 		coords = tweened(
@@ -98,7 +98,7 @@
 	function mouseOver(event) {
 		isHovered = true;
 		x = event.pageX + 10;
-		y = event.pageY + 10;
+		y = event.pageY + 10 - max(0, videoTag.offsetHeight + y - (clientHeight || 0) + 10);
 		videoTag.play();
 		if (src) {
 			hover_container.appendChild(videoTag);
@@ -121,14 +121,18 @@
 			y: y
 		});
 	}
-	const max = (/** @type {number} */ a, /** @type {number} */ b) => a < b ? b : a;
+	const max = (/** @type {number} */ a, /** @type {number} */ b) => (a < b ? b : a);
 	/**
 	 * @param {{ pageX: number; pageY: number; }} event
 	 */
 	function mouseMove(event) {
 		x = event.pageX + 10;
 		y = event.pageY + 10;
-		coords.set({ x: event.pageX + 10, y: event.pageY + 10 - max(0, (videoTag.offsetHeight + y) - (clientHeight || 0) + 10 ) });
+		console.log(x, y);
+		coords.set({
+			x: event.pageX + 10,
+			y: event.pageY + 10 - max(0, videoTag.offsetHeight + y - (clientHeight || 0) + 10)
+		});
 	}
 
 	function mouseLeave() {
@@ -141,8 +145,8 @@
 		showPopup = true;
 		if (src && videoTag) {
 			videoTag.controls = true;
-			popupSize.set({ width: (clientWidth || 1920) * 1000 / 1920});
-			size.set({ width: (clientWidth || 1920) * 1000 / 1920 });
+			popupSize.set({ width: ((clientWidth || 1920) * 1000) / 1920 });
+			size.set({ width: ((clientWidth || 1920) * 1000) / 1920 });
 		}
 	}
 
@@ -186,13 +190,30 @@
 			});
 		}
 	}
+	/**
+	 * @param { KeyboardEvent } keyboardEvent
+	 */
+	function onKeyDown(keyboardEvent) {
+		switch (keyboardEvent.key) {
+			case 'Escape':
+				if (showPopup) {
+					closePopup();
+				}
+				break;
+
+			default:
+				break;
+		}
+	}
 </script>
+
 <!-- 
 <svelte:window on:wheel|nonpassive={e => {
     if(showPopup)
         e.preventDefault()
 }} /> 
  -->
+<svelte:window on:keydown={onKeyDown} />
 <button
 	on:mouseover={mouseOver}
 	on:mouseleave={mouseLeave}
@@ -258,5 +279,4 @@
 		backdrop-filter: blur(2px);
 		z-index: 1;
 	}
-
 </style>
