@@ -344,6 +344,7 @@
 		height: fit-content;
 		padding-bottom: 3%;
 		margin: 0;
+		margin-top: 4%;
 	}
 	h1 {
 		width: fit-content;
