@@ -177,18 +177,6 @@
 	}
 
 	onMount(() => {
-		window.addEventListener('scroll', (event) => {
-			if (videoTag && showPopup) {
-				coords.set({
-					x: Math.round(window.innerWidth / 2 - ((clientWidth || 1920) * 1000) / 1920 / 2),
-					y: Math.round(
-						window.innerHeight / 2 +
-							window.scrollY -
-							((((clientWidth || 1920) * 1000) / 1920) * 9) / 16 / 2
-					)
-				});
-			}
-		});
 		/**
 		 * @type {HTMLSourceElement}
 		 */
@@ -262,7 +250,18 @@
         e.preventDefault()
 }} /> 
  -->
-<svelte:window on:keydown={onKeyDown} />
+<svelte:window on:keydown={onKeyDown} on:scroll={() => {
+	if (videoTag && showPopup) {
+				coords.set({
+					x: Math.round(window.innerWidth / 2 - ((clientWidth || 1920) * 1000) / 1920 / 2),
+					y: Math.round(
+						window.innerHeight / 2 +
+							window.scrollY -
+							((((clientWidth || 1920) * 1000) / 1920) * 9) / 16 / 2
+					)
+				});
+			}
+}}/>
 <button
 	on:mouseover={mouseOver}
 	on:mouseleave={mouseLeave}

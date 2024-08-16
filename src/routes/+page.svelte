@@ -11,7 +11,6 @@
 	import HoverPeek from '../components/HoverPeek.svelte';
 	import { base } from '$app/paths';
 	import Tag from '../components/Tag.svelte';
-	import svgg from '$lib/project_assets/Untitled.svg';
 	export let data;
 </script>
 
