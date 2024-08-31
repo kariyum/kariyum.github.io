@@ -19,9 +19,9 @@
 		</div>
 	</main>
 
-	<footer>
+	<!-- <footer>
 		<p>Karim Ben Amara</p>
-	</footer>
+	</footer> -->
 </div>
 
 <style>

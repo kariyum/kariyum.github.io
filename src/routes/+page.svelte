@@ -261,22 +261,28 @@
 		<h1>
 			<div>
 				<span>#</span>
-				Favorite blogs
+				Readings
 			</div>
 		</h1>
-		<p>The following list contains my favorite blogs</p>
+		<p>The following list contains some of my favorite blogs</p>
 		<ul>
 			<li>
 				<a href="https://discord.com/blog/why-discord-is-switching-from-go-to-rust/"
-					>Why Discord is switching from go to rust</a
+					>Why Discord is Switching from Go to Rust</a
 				>
 			</li>
 			<li>
 				<a href="https://discord.com/blog/how-discord-stores-billions-of-messages"
-					>How Discord stores billision of message</a
+					>How Discord Stores Billions of Messages</a
 				>
 			</li>
-			<li><a href="https://samwho.dev/load-balancing/">Load balancing visualized</a></li>
+			<li><a href="https://samwho.dev/load-balancing/">Load Balancing Visualized</a></li>
+		</ul>
+		and books
+		<ul>
+			<li>
+				<a href="https://natureofcode.com/introduction/">Nature of Code book</a>
+			</li>
 		</ul>
 	</div>
 
@@ -312,7 +318,7 @@
 	.tool-list {
 		list-style: none;
 		margin: 0;
-		padding-left: 1%;
+		padding-left: 0%;
 	}
 	.tool {
 		/* color: #3198fc; */
@@ -341,9 +347,9 @@
 	}
 	dir {
 		height: fit-content;
-		padding-bottom: 3%;
+		padding-bottom: 2%;
 		margin: 0;
-		margin-top: 4%;
+		margin-top: 2%;
 	}
 	h1 {
 		width: fit-content;
