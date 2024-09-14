@@ -214,7 +214,7 @@
 			<h1>
 				<div>
 					<span>##</span>
-					Metrics analysis
+					Program Insights
 				</div>
 			</h1>
 			<Tag>web-app</Tag>
@@ -225,6 +225,11 @@
 				in some valuable information such as the min, max, average and cpu_usage.
 			</p>
 			<p>I felt the need of such an app to effectively find bottlenecks in a webservice at work.</p>
+			<p>
+				Find more here <a href="https://github.com/kariyum/program-insights" class="subtitle-link"
+					>github repo</a
+				>.
+			</p>
 			<ul class="tool-list">
 				<li title="Development time is 2 weeks.">⏱️ - <span class="tool">2 weeks</span></li>
 				<li title="Start date is at mounth April of 2024">
@@ -277,6 +282,11 @@
 				>
 			</li>
 			<li><a href="https://samwho.dev/load-balancing/">Load Balancing Visualized</a></li>
+			<li>
+				<a href="https://nee.lv/2021/02/28/How-I-cut-GTA-Online-loading-times-by-70/"
+					>How I cut GTA Online loading times by 70%</a
+				>
+			</li>
 		</ul>
 		and books
 		<ul>

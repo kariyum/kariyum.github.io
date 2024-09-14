@@ -11,14 +11,14 @@
 	 */
 	let videoTag;
 	let coords = tweened(
-		{ x: undefined || 0, y: undefined || 0 },
+		{ x: 0, y: 0 },
 		{
 			duration: 400,
 			easing: cubicOut
 		}
 	);
 	let size = tweened(
-		{ width: undefined || 0 },
+		{ width: 0 },
 		{
 			duration: 0,
 			easing: cubicOut
@@ -26,7 +26,7 @@
 	);
 
 	let popupSize = tweened(
-		{ width: undefined || 0 },
+		{ width: 0 },
 		{
 			duration: 400,
 			easing: cubicOut
@@ -37,14 +37,14 @@
 	function initTweens() {
 		initialized = false;
 		coords = tweened(
-			{ x: undefined || 0, y: undefined || 0 },
+			{ x: 0, y: 0 },
 			{
 				duration: 400,
 				easing: cubicOut
 			}
 		);
 		size = tweened(
-			{ width: undefined || 0 },
+			{ width: 0 },
 			{
 				duration: 0,
 				easing: cubicOut
@@ -52,7 +52,7 @@
 		);
 
 		popupSize = tweened(
-			{ width: undefined || 0 },
+			{ width: 0 },
 			{
 				duration: 400,
 				easing: cubicOut
@@ -151,18 +151,21 @@
 		showPopup = true;
 		if (src && videoTag) {
 			videoTag.controls = true;
-			popupSize.set({ width: ((clientWidth || 1920) * 1000) / 1920 }, {duration: 700});
+			popupSize.set({ width: ((clientWidth || 1920) * 1000) / 1920 }, { duration: 700 });
 			size.set({ width: ((clientWidth || 1920) * 1000) / 1920 });
-			coords.set({
-				x: Math.round(window.innerWidth / 2 - ((clientWidth || 1920) * 1000) / 1920 / 2),
-				y: Math.round(
-					window.innerHeight / 2 +
-						window.scrollY -
-						((((clientWidth || 1920) * 1000) / 1920) * 9) / 16 / 2
-				)
-			}, {
-				duration: 700
-			});
+			coords.set(
+				{
+					x: Math.round(window.innerWidth / 2 - ((clientWidth || 1920) * 1000) / 1920 / 2),
+					y: Math.round(
+						window.innerHeight / 2 +
+							window.scrollY -
+							((((clientWidth || 1920) * 1000) / 1920) * 9) / 16 / 2
+					)
+				},
+				{
+					duration: 700
+				}
+			);
 		}
 	}
 
@@ -244,24 +247,24 @@
 	}
 </script>
 
-<!-- 
-<svelte:window on:wheel|nonpassive={e => {
-    if(showPopup)
-        e.preventDefault()
-}} /> 
- -->
-<svelte:window on:keydown={onKeyDown} on:scroll={() => {
-	if (videoTag && showPopup) {
-				coords.set({
-					x: Math.round(window.innerWidth / 2 - ((clientWidth || 1920) * 1000) / 1920 / 2),
-					y: Math.round(
-						window.innerHeight / 2 +
-							window.scrollY -
-							((((clientWidth || 1920) * 1000) / 1920) * 9) / 16 / 2
-					)
-				});
-			}
-}}/>
+<svelte:window
+	on:keydown={onKeyDown}
+	on:wheel|nonpassive={(e) => {
+		if (showPopup) e.preventDefault();
+	}}
+	on:scroll={() => {
+		if (videoTag && showPopup) {
+			coords.set({
+				x: Math.round(window.innerWidth / 2 - ((clientWidth || 1920) * 1000) / 1920 / 2),
+				y: Math.round(
+					window.innerHeight / 2 +
+						window.scrollY -
+						((((clientWidth || 1920) * 1000) / 1920) * 9) / 16 / 2
+				)
+			});
+		}
+	}}
+/>
 <button
 	on:mouseover={mouseOver}
 	on:mouseleave={mouseLeave}
