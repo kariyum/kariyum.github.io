@@ -287,6 +287,11 @@
 					>How I cut GTA Online loading times by 70%</a
 				>
 			</li>
+			<li>
+				<a href="https://blog.neetcode.io/p/doordash-robust-microservices"
+					>How I cut GTA Online loading times by 70%</a
+				>
+			</li>
 		</ul>
 		and books
 		<ul>
