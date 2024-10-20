@@ -1,15 +1,11 @@
 <script>
 	// import welcome from '$lib/images/svelte-welcome.webp';
-	import ants from '$lib/project_assets/simulation/ants.mp4';
-	import reunited from '$lib/project_assets/reunited/reunited.mp4';
-	import ants_poster from '$lib/project_assets/simulation/ants.png';
-	import maze from '$lib/project_assets/maze/maze.mp4';
-	import maze_poster from '$lib/project_assets/maze/maze_preview.png';
-	import github from '$lib/images/github.svg';
-	import drone_vid from '$lib/project_assets/drone/vid.mp4';
-	import drone_poster from '$lib/project_assets/drone/drone_poster.png';
-	import HoverPeek from '../components/HoverPeek.svelte';
 	import { base } from '$app/paths';
+	import drone_vid from '$lib/project_assets/drone/vid.mp4';
+	import maze from '$lib/project_assets/maze/maze.mp4';
+	import reunited from '$lib/project_assets/reunited/reunited.mp4';
+	import ants from '$lib/project_assets/simulation/ants.mp4';
+	import HoverPeek from '../components/HoverPeek.svelte';
 	import Tag from '../components/Tag.svelte';
 	export let data;
 </script>
@@ -28,7 +24,7 @@
 		<p>Basically, I'm a software engineer, from Tunisia.</p>
 	</div>
 
-	<div class="introduction">
+	<div class="introduction" style="margin-top: 6em;">
 		<h1>
 			<div>
 				<span> # </span>
@@ -343,8 +339,8 @@
 	}
 	.introduction {
 		margin: 0 auto 0 auto;
-		max-width: 800px;
-		margin-top: 2em;
+		max-width: 1000px;
+		margin-top: 3em;
 	}
 
 	.slogan {
