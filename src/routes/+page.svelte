@@ -288,6 +288,11 @@
 					>Doordash Robust Microservices</a
 				>
 			</li>
+			<li>
+				<a href="https://ryhl.io/blog/async-what-is-blocking/"
+					>Async what is blocking?</a
+				>
+			</li>
 		</ul>
 		and books
 		<ul>
