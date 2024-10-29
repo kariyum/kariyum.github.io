@@ -7,12 +7,15 @@
 	import ants from '$lib/project_assets/simulation/ants.mp4';
 	import HoverPeek from '../components/HoverPeek.svelte';
 	import Tag from '../components/Tag.svelte';
+	import favicon from '$lib/images/favicon.ico';
+
 	export let data;
 </script>
 
 <svelte:head>
 	<title>Karim Ben Amara</title>
 	<meta name="description" content="Karim Ben Amara portfolio website" />
+	<link rel="shortcut icon" href="{favicon}" type="image/x-icon">
 </svelte:head>
 
 <section>
