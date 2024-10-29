@@ -12,7 +12,7 @@
 
 <svelte:head>
 	<title>Karim Ben Amara</title>
-	<meta name="description" content="Karim Ben Amara portfolio" />
+	<meta name="description" content="Karim Ben Amara portfolio website" />
 </svelte:head>
 
 <section>
@@ -32,8 +32,8 @@
 			</div>
 		</h1>
 		<p>
-			I love backend engineering, building systems from scratch, optimizing them, touching lives,
-			building experiences and helping shape the world around us.
+			I love backend engineering, building systems from scratch, optimizing them,
+			inventing new experiences, touching lives and helping shape the world around us 😊
 		</p>
 	</div>
 
@@ -218,7 +218,7 @@
 			<Tag>analysis</Tag>
 			<p>
 				A web app that accepts metrics streaming and neatly displays them in a sorted table adding
-				in some valuable information such as the min, max, average and cpu_usage.
+				in some valuable information such as the min, max, average of the function's running time and and it's cpu occupation in milliseconds.
 			</p>
 			<p>I felt the need of such an app to effectively find bottlenecks in a webservice at work.</p>
 			<p>

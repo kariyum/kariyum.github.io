@@ -3,7 +3,7 @@
 	import linkedin from '$lib/images/linkedin.svg';
 	import github from '$lib/images/github.svg';
 	import { base } from '$app/paths';
-	
+	import karim_ben_amara_resume from '$lib/karim_ben_amara_resume.pdf';
 </script>
 
 <nav>
@@ -29,9 +29,9 @@
 				LinkedIn
 			</a>
 		</li>
-		<!-- <li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-			<a href="/about">📑 Resume</a>
-		</li> -->
+		<li>
+			<a target="_blank" href={karim_ben_amara_resume}>📑 Resume</a>
+		</li>
 	</ul>
 	
 </nav>
