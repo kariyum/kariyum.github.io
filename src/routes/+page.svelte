@@ -15,7 +15,7 @@
 <svelte:head>
 	<title>Karim Ben Amara</title>
 	<meta name="description" content="Karim Ben Amara portfolio website" />
-	<link rel="shortcut icon" href="{favicon}" type="image/x-icon">
+	<link rel="shortcut icon" href={favicon} type="image/x-icon" />
 </svelte:head>
 
 <section>
@@ -26,8 +26,19 @@
 		<span style="color:gray"> (aka. feeding my curiosty and suiting my needs) </span>
 		<p>Basically, I'm a software engineer, from Tunisia.</p>
 	</div>
-
-	<div class="introduction" style="margin-top: 6em;">
+	<div class="introduction" style="margin-top: 7rem;">
+		<div class="card">
+			<h1><span style="color:var(--orange);">*</span> Latest news!</h1>
+			<p>
+				Currently working on a project that aims to connect freelancers with clients specifically in
+				Tunisia focusing on the ease of communication, matching, project management and eventually payment.
+			</p>
+			<p>
+				Using Sveltekit for the user interface, Rust for the server and Postgres for the database.
+			</p>
+		</div>
+	</div>
+	<div class="introduction">
 		<h1>
 			<div>
 				<span> # </span>
@@ -35,8 +46,8 @@
 			</div>
 		</h1>
 		<p>
-			I love backend engineering, building systems from scratch, optimizing them,
-			inventing new experiences, touching lives and helping shape the world around us 😊
+			I love backend engineering, building systems from scratch, optimizing them, inventing new
+			experiences, touching lives and helping shape the world around us 😊
 		</p>
 	</div>
 
@@ -221,7 +232,8 @@
 			<Tag>analysis</Tag>
 			<p>
 				A web app that accepts metrics streaming and neatly displays them in a sorted table adding
-				in some valuable information such as the min, max, average of the function's running time and and it's cpu occupation in milliseconds.
+				in some valuable information such as the min, max, average of the function's running time
+				and and it's cpu occupation in milliseconds.
 			</p>
 			<p>I felt the need of such an app to effectively find bottlenecks in a webservice at work.</p>
 			<p>
@@ -292,9 +304,7 @@
 				>
 			</li>
 			<li>
-				<a href="https://ryhl.io/blog/async-what-is-blocking/"
-					>Async what is blocking?</a
-				>
+				<a href="https://ryhl.io/blog/async-what-is-blocking/">Async what is blocking?</a>
 			</li>
 		</ul>
 		and books
@@ -334,6 +344,12 @@
 </section>
 
 <style>
+	.card {
+		border: 1px solid rgba(185, 185, 185, 0.5);
+		box-shadow: rgba(166, 211, 255, 0.3) 0px 0px 24px;
+		border-radius: 5px;
+		padding: 1rem;
+	}
 	.tool-list {
 		list-style: none;
 		margin: 0;

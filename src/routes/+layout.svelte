@@ -42,12 +42,19 @@
 			display: inline;
 			top: 5%;
 			height: fit-content;
-			margin-top: 30em;
+			margin-top: 26rem;
 			/* margin-right: auto; */
 			padding-left: 10em;
 			/* padding-right: 10em; */
 			font-weight: 500;
 			font-size: 16px;
+		}
+
+		.header {
+			z-index: -1;
+			height: 100%;
+			margin: 0;
+			padding: 0;
 		}
 	}
 
@@ -63,12 +70,5 @@
 		.header {
 			display: None;
 		}
-	}
-
-	.header {
-		z-index: -1;
-		height: 100%;
-		margin: 0;
-		padding: 0;
 	}
 </style>
