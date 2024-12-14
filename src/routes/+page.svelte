@@ -1,5 +1,4 @@
 <script>
-	// import welcome from '$lib/images/svelte-welcome.webp';
 	import { base } from '$app/paths';
 	import drone_vid from '$lib/project_assets/drone/vid.mp4';
 	import maze from '$lib/project_assets/maze/maze.mp4';
@@ -10,6 +9,29 @@
 	import favicon from '$lib/images/favicon.ico';
 
 	export let data;
+	/**
+	 * @param {string | number | Date} date
+	 */
+	function formatDate(date) {
+		/**
+		 * @type {Intl.DateTimeFormatOptions}
+		 */
+		const options = { year: 'numeric', month: 'long' };
+		return new Date(date).toLocaleDateString('en-US', options);
+	}
+
+	/**
+	 * @param {string | number | Date} start
+	 * @param {string | number | Date} end
+	 */
+	function projectDates(start, end) {
+		const startDate = formatDate(start);
+		const endDate = formatDate(end);
+		if (startDate === endDate) {
+			return startDate;
+		}
+		return `${startDate} → ${endDate}`;
+	}
 </script>
 
 <svelte:head>
@@ -31,7 +53,8 @@
 			<h1><span style="color:var(--orange);">*</span> Latest news!</h1>
 			<p>
 				Currently working on a project that aims to connect freelancers with clients specifically in
-				Tunisia focusing on the ease of communication, matching, project management and eventually payment.
+				Tunisia focusing on the ease of communication, matching, project management and eventually
+				payment.
 			</p>
 			<p>
 				Using Sveltekit for the user interface, Rust for the server and Postgres for the database.
@@ -65,281 +88,120 @@
 			class and so I spared some time to create some visualizations for them, deepening my
 			understanding and sharing it with the class.
 		</p>
-		<dir>
-			<HoverPeek videoPath={ants}>
-				<h1>
-					<div>
-						<span> ## </span>
-						🐜 Ant Colony Optimizations (ACO)
-					</div>
-				</h1>
-			</HoverPeek>
-			<!-- <Tag>self-initiated</Tag> -->
-			<Tag>heuristics</Tag>
-			<Tag>search-algorithms</Tag>
-			<p>
-				Ant Colony Optimization is a metaheuristic approach that is well known as a solution
-				approximator for the NP-Complete <a
-					class="link"
-					href="https://brilliant.org/wiki/traveling-salesperson-problem/"
-					>Traveling Salesman Problem (TSP).</a
-				>
-			</p>
-			<!-- svelte-ignore a11y-media-has-caption -->
-			<!-- <video muted controls preload="none" style="width:100%" poster={ants_poster}>
-				<source src={ants} />
-			</video> -->
-			<p>
-				You can solve the problem with your own ACO configuration
-				<a href="{base}/ant_colony_optimization/index.html" class="subtitle-link"> here </a>
-				and if you would like to take a look at the code check the following
-				<a
-					href="https://github.com/kariyum/ant_colony_optimization.git"
-					target="_blank"
-					class="subtitle-link"
-				>
-					github repo
-				</a>
-				.
-			</p>
-			<div>
-				<ul class="tool-list">
-					<li title="Development duration is 2 weeks.">⏱️ - <span class="tool">2 weeks</span></li>
-					<li title="Start date">
-						📅 - <span class="tool">2022 - Just after ending 2nd year of my engineering school</span
+
+		<div class="container">
+			{#each data.projects_curiosity as project}
+				<div class="project-container">
+					<!-- <div>
+						<video
+							controls
+							autoplay
+							loop
+							muted
+							playsinline
+							style="width: 100%; border-radius: 5px;"
 						>
-					</li>
-					<li title="Tools">⚙️ - <span class="tool">Javascript</span></li>
-				</ul>
-			</div>
-		</dir>
-
-		<dir>
-			<HoverPeek videoPath={drone_vid}>
-				<h1>
-					<div>
-						<span>##</span>
-						Neural Drone
+							<source src={ants} type="video/mp4" />
+							Your browser does not support the video tag.
+						</video>
+					</div> -->
+					<div class="project">
+						<h3 class="header"><div><span style="color:orange;">##</span> {project.title}</div></h3>
+						{#each project.keywords as keyword}
+							<Tag>{keyword}</Tag>
+						{/each}
+						{#each project.body as description}
+							<p>
+								{@html description}
+							</p>
+						{/each}
+						<div>
+							<div>
+								<span style="font-weight: 500	;">Tools: </span>
+								{#each project.techStack as tool}
+									<span>{tool + " "}</span>
+								{/each}
+							</div>
+						</div>
+						<div class="project-footer">
+							<a class="subtitle-link" href={project.github}>{project.to_repo}</a>
+							<div>
+								{projectDates(project.start_date, project.end_date)}
+							</div>
+						</div>
 					</div>
-				</h1>
-			</HoverPeek>
-			<Tag>heuristics</Tag>
-			<Tag>genetic-algorithm</Tag>
-			<Tag>neural network</Tag>
-			<p>Neural Networks ✖️ Genetic Algorithm</p>
-			<p>
-				A simple neural network learning to control a Drone and avoid crushing (keep the drone
-				within the screen) for as long as possible using genetic algorithm as the neural network
-				optimizer.
-			</p>
-			<p>
-				Find more here <a href="https://github.com/kariyum/neural_drone" class="subtitle-link"
-					>github repo</a
-				>.
-			</p>
-			<div>
-				<ul class="tool-list">
-					<li title="Development time is 1 month">⏱️ - <span class="tool">1 month</span></li>
-					<li title="Start date at mid december of 2022">
-						📅 - <span class="tool">December 2022 - January of 2023</span>
-					</li>
-					<li title="Made with">
-						⚙️ -
-						<span class="tool">Python</span>
-						-
-						<span class="tool">Pygame</span>
-					</li>
-				</ul>
-			</div>
-		</dir>
+				</div>
+			{/each}
+		</div>
 
-		<dir>
+		<div class="introduction" id="blogs">
 			<h1>
 				<div>
-					<span>##</span>
-					Single Machine Scheduling Problem
+					<span>#</span>
+					Readings
 				</div>
 			</h1>
-			<Tag>heuristics</Tag>
-			<Tag>genetic-algorithm</Tag>
-			<Tag>branch&bound</Tag>
-			<Tag>ant-colony-optimization</Tag>
-			<p>
-				Leveraging different heuristics and meta-heuristics approaches to solve the NP-HARD problem.
-				Comparing their speed and best found solution.
-			</p>
-			<p>
-				Find more here <a
-					href="https://github.com/kariyum/single_machine_scheduling_problem"
-					class="subtitle-link">github repo</a
-				>.
-			</p>
-			<div>
-				<ul class="tool-list">
-					<li title="Development duration">⏱️ - <span class="tool">1 month</span></li>
-					<li title="Start date">📅 - <span class="tool">January of 2023</span></li>
-					<li title="Tools">⚙️ - <span class="tool">Python - Matplotlib</span></li>
-				</ul>
-			</div>
-		</dir>
-
-		<dir>
-			<HoverPeek videoPath={maze}>
-				<h1>
-					<div>
-						<span>##</span>
-						Maze solver
-					</div>
-				</h1>
-			</HoverPeek>
-			<Tag>heuristics</Tag>
-			<Tag>maze</Tag>
-			<p>
-				This program is used to compare different heuristics and visualizing them while trying to
-				find a path between a starting point and a random point.
-			</p>
-			<p>
-				Find more here <a href="https://github.com/kariyum/maze-solver" class="subtitle-link"
-					>github repo</a
-				>.
-			</p>
-			<ul class="tool-list">
-				<li title="Development duration is 2 weeks.">⏱️ - <span class="tool">2 weeks</span></li>
-				<li title="Start date is at April of 2022">
-					📅 - <span class="tool">April of 2022</span>
+			<p>The following list contains some of my favorite blogs</p>
+			<ul>
+				<li>
+					<a href="https://discord.com/blog/why-discord-is-switching-from-go-to-rust/"
+						>Why Discord is Switching from Go to Rust</a
+					>
 				</li>
-				<li title="Made with">⚙️ - <span class="tool">Python</span></li>
-			</ul>
-		</dir>
-	</div>
-	<div class="introduction">
-		<h1>
-			<div>
-				<span>#</span>
-				Suiting my needs
-			</div>
-		</h1>
-		<p>Here's a list of some apps that I have implmented to fill some need</p>
-		<dir>
-			<h1>
-				<div>
-					<span>##</span>
-					Program Insights
-				</div>
-			</h1>
-			<Tag>web-app</Tag>
-			<Tag>benchmark</Tag>
-			<Tag>analysis</Tag>
-			<p>
-				A web app that accepts metrics streaming and neatly displays them in a sorted table adding
-				in some valuable information such as the min, max, average of the function's running time
-				and and it's cpu occupation in milliseconds.
-			</p>
-			<p>I felt the need of such an app to effectively find bottlenecks in a webservice at work.</p>
-			<p>
-				Find more here <a href="https://github.com/kariyum/program-insights" class="subtitle-link"
-					>github repo</a
-				>.
-			</p>
-			<ul class="tool-list">
-				<li title="Development time is 2 weeks.">⏱️ - <span class="tool">2 weeks</span></li>
-				<li title="Start date is at mounth April of 2024">
-					📅 - <span class="tool">April of 2024</span>
+				<li>
+					<a href="https://discord.com/blog/how-discord-stores-billions-of-messages"
+						>How Discord Stores Billions of Messages</a
+					>
 				</li>
-				<li title="Tools">⚙️ - <span class="tool">Svelte</span></li>
+				<li><a href="https://samwho.dev/load-balancing/">Load Balancing Visualized</a></li>
+				<li>
+					<a href="https://nee.lv/2021/02/28/How-I-cut-GTA-Online-loading-times-by-70/"
+						>How I cut GTA Online loading times by 70%</a
+					>
+				</li>
+				<li>
+					<a href="https://blog.neetcode.io/p/doordash-robust-microservices"
+						>Doordash Robust Microservices</a
+					>
+				</li>
+				<li>
+					<a href="https://ryhl.io/blog/async-what-is-blocking/">Async what is blocking?</a>
+				</li>
 			</ul>
-		</dir>
-		<dir>
-			<h1>
-				<div>
-					<span>##</span>
-					Expense Tracker
-				</div>
-			</h1>
-			<Tag>mobile-app</Tag>
-			<Tag>tracking</Tag>
-			<p>
-				Mobile app useful to track one's day to day expenses, extract some valuable information with
-				some aggregations and graphs.
-			</p>
-			<p>
-				Find more here <a href="https://github.com/kariyum/wallet" class="subtitle-link"
-					>github repo</a
-				>.
-			</p>
-			<ul class="tool-list">
-				<li title="Start date is June of 2023">📅 - <span class="tool">June of 2023</span></li>
-				<li title="Made with">⚙️ - <span class="tool">Flutter</span></li>
+			and books
+			<ul>
+				<li>
+					<a href="https://natureofcode.com/introduction/">Nature of Code book</a>
+				</li>
 			</ul>
-		</dir>
-	</div>
-	<div class="introduction" id="blogs">
-		<h1>
-			<div>
-				<span>#</span>
-				Readings
-			</div>
-		</h1>
-		<p>The following list contains some of my favorite blogs</p>
-		<ul>
-			<li>
-				<a href="https://discord.com/blog/why-discord-is-switching-from-go-to-rust/"
-					>Why Discord is Switching from Go to Rust</a
-				>
-			</li>
-			<li>
-				<a href="https://discord.com/blog/how-discord-stores-billions-of-messages"
-					>How Discord Stores Billions of Messages</a
-				>
-			</li>
-			<li><a href="https://samwho.dev/load-balancing/">Load Balancing Visualized</a></li>
-			<li>
-				<a href="https://nee.lv/2021/02/28/How-I-cut-GTA-Online-loading-times-by-70/"
-					>How I cut GTA Online loading times by 70%</a
-				>
-			</li>
-			<li>
-				<a href="https://blog.neetcode.io/p/doordash-robust-microservices"
-					>Doordash Robust Microservices</a
-				>
-			</li>
-			<li>
-				<a href="https://ryhl.io/blog/async-what-is-blocking/">Async what is blocking?</a>
-			</li>
-		</ul>
-		and books
-		<ul>
-			<li>
-				<a href="https://natureofcode.com/introduction/">Nature of Code book</a>
-			</li>
-		</ul>
-	</div>
+		</div>
 
-	<div class="introduction">
-		<HoverPeek videoPath={reunited}>
-			<div style="display: flex; align-items:center;">
-				<h1 style="display: inline; margin:0;">
-					<div style="display: inline; margin:0;">
-						<span>#</span>
-						Reunited
-					</div>
-				</h1>
-				<span>&nbsp;- a fun little game!</span>
-			</div>
-		</HoverPeek>
-		<p>
-			I made this game back in december 2020 when covid-19 was everywhere and we had to be isolated
-			at home.
-		</p>
-		<a href="https://play.unity.com/en/games/67ca8ced-59e7-4d36-bc9b-9a62b0b2b88d/reunited">
-			Play the game!
-		</a>
-		Move with arrow keys and jump with space key.
-		<p>
-			This project was the first project I have ever done. It is quite special for me because it
-			taught me that the most important aspect about working on projects is to start prototyping
-			asap, decompose the ideas into small components and just do it.
-		</p>
+		<div class="introduction">
+			<HoverPeek videoPath={reunited}>
+				<div style="display: flex; align-items:center;">
+					<h1 style="display: inline; margin:0;">
+						<div style="display: inline; margin:0;">
+							<span>#</span>
+							Reunited
+						</div>
+					</h1>
+					<span>&nbsp;- a fun little game!</span>
+				</div>
+			</HoverPeek>
+			<p>
+				I made this game back in december 2020 when covid-19 was everywhere and we had to be
+				isolated at home.
+			</p>
+			<a href="https://play.unity.com/en/games/67ca8ced-59e7-4d36-bc9b-9a62b0b2b88d/reunited">
+				Play the game!
+			</a>
+			Move with arrow keys and jump with space key.
+			<p>
+				This project was the first project I have ever done. It is quite special for me because it
+				taught me that the most important aspect about working on projects is to start prototyping
+				asap, decompose the ideas into small components and just do it.
+			</p>
+		</div>
 	</div>
 </section>
 
@@ -407,7 +269,21 @@
 		background-color: rgb(255, 246, 236);
 	}
 
-	.link {
+	.header {
+		margin: 0;
+		width: fit-content;
+		border-bottom: 2px solid rgb(205, 221, 255);
+		transition: background-color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	}
+
+	.header:hover {
+		width: fit-content;
+		width: -moz-fit-content;
+		border-bottom: 2px solid rgb(205, 221, 255);
+		background-color: rgb(255, 246, 236);
+	}
+
+	:global(.link) {
 		text-decoration: none;
 		font-weight: 500;
 		background-color: rgb(255, 246, 236);
@@ -432,5 +308,29 @@
 
 	button:hover {
 		cursor: pointer;
+	}
+
+	.project {
+		/* border: 1px solid rgba(185, 185, 185, 0.5); */
+		/* box-shadow: rgba(166, 211, 255, 0.3) 0px 0px 24px; */
+		/* border-radius: 5px; */
+		/* padding: 1rem; */
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.project-footer {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.project-container {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
 	}
 </style>
