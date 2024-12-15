@@ -112,7 +112,7 @@
 						{/each}
 						{#each project.body as description}
 							<p>
-								{@html description}
+								{@html description.replace('{base}', base)}
 							</p>
 						{/each}
 						<div>

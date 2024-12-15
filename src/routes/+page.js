@@ -38,7 +38,7 @@ export function load() {
       "keywords": ["Javascript", "ACO", "Metaheuristic", "Optimization", "Search-Algorithms"],
       "body": [
         `Ant Colony Optimization is a metaheuristic approach that is well known as a solution approximator for the NP-Complete <a class="link" href="https://brilliant.org/wiki/traveling-salesperson-problem/" >Traveling Salesman Problem (TSP).</a >`,
-        'You can solve the problem with your own ACO configuration <a href="{base}/ant_colony_optimization/index.html" class="subtitle-link"> here </a>.'
+        'You can solve the problem with your own ACO configuration <a href="{base}/ant_colony_optimization/index.html" class="subtitle-link"> here</a>.'
       ],
       "github": "https://github.com/kariyum/ant_colony_optimization.git",
       "start_date": "2021-06-01",
