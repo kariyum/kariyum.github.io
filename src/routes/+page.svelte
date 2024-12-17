@@ -112,7 +112,7 @@
 						{/each}
 						{#each project.body as description}
 							<p>
-								{@html description.replace('{base}', base)}
+								{@html description}
 							</p>
 						{/each}
 						<div>
@@ -311,11 +311,19 @@
 	}
 
 	.project {
-		/* border: 1px solid rgba(185, 185, 185, 0.5); */
+		/* border: 1px solid rgba(185, 185, 185, 0); */
 		/* box-shadow: rgba(166, 211, 255, 0.3) 0px 0px 24px; */
 		/* border-radius: 5px; */
-		/* padding: 1rem; */
+		/* padding: 0.5rem; */
 	}
+
+	/* .project:hover {
+		box-sizing: border-box;
+		background-color: rgb(255, 252, 248);
+		border: 1px solid rgba(185, 185, 185, 0.5);
+		box-shadow: rgba(166, 211, 255, 0.3) 0px 0px 24px;
+		border-radius: 5px;
+	} */
 
 	.container {
 		display: flex;

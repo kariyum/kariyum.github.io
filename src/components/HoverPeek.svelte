@@ -117,7 +117,7 @@
 					hover_container.style.top = `${$coords.y}px`;
 					hover_container.style.left = `${$coords.x}px`;
 				}
-				console.log({ x, y });
+				// console.log({ x, y });
 			});
 			initialized = true;
 		}
@@ -133,7 +133,7 @@
 	function mouseMove(event) {
 		x = event.pageX + 10;
 		y = event.pageY + 10;
-		console.log(x, y);
+		// console.log(x, y);
 		coords.set({
 			x: event.pageX + 10,
 			y: event.pageY + 10 - max(0, videoTag.offsetHeight + y - (clientHeight || 0) + 10)
