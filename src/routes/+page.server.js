@@ -76,8 +76,11 @@ export function load() {
     {
       "title": "Expense Tracker",
       "keywords": ["Mobile-App", "Expenses"],
-      "body": [`Mobile app useful to track one's day to day expenses, extract some valuable information with some aggregations and graphs.`],
+      "body": [
+        `Mobile app useful to track one's day to day expenses, extract some valuable information with some aggregations and graphs.`
+      ],
       "start_date": "2023-06-01",
+      "github": "https://github.com/kariyum/wallet",
       "end_date": "2023-06-01",
       "techStack": ["Flutter"],
     }
