@@ -84,27 +84,14 @@
 		</h1>
 
 		<p>
-			During my time at the engineering school, I had been captivated with some of the concepts in
-			class and so I spared some time to create some visualizations for them, deepening my
-			understanding and sharing it with the class.
+			During my time at the engineering school, I had been captivated with some of the concepts 
+			and so I spared some time to create some visualizations for them, deepening my
+			understanding and sharing them with the class.
 		</p>
 
 		<div class="container">
 			{#each data.projects_curiosity as project}
 				<div class="project-container">
-					<!-- <div>
-						<video
-							controls
-							autoplay
-							loop
-							muted
-							playsinline
-							style="width: 100%; border-radius: 5px;"
-						>
-							<source src={ants} type="video/mp4" />
-							Your browser does not support the video tag.
-						</video>
-					</div> -->
 					<div class="project">
 						<h3 class="header"><div><span style="color:orange;">##</span> {project.title}</div></h3>
 						{#each project.keywords as keyword}
@@ -117,19 +104,25 @@
 						{/each}
 						<div>
 							<div>
-								<span style="font-weight: 500	;">Tools: </span>
+								<span style="font-weight: 500;">Tools: </span>
 								{#each project.techStack as tool}
-									<span>{tool + " "}</span>
+									<span>{tool + ' '}</span>
 								{/each}
 							</div>
 						</div>
 						<div class="project-footer">
 							<a class="subtitle-link" href={project.github}>{project.to_repo}</a>
-							<div>
+							<div class="project-date">
 								{projectDates(project.start_date, project.end_date)}
 							</div>
 						</div>
 					</div>
+					<!-- <div class="project-video">
+						<video controls autoplay loop muted playsinline style="width: 100%;">
+							<source src={ants} type="video/mp4" />
+							Your browser does not support the video tag.
+						</video>
+					</div> -->
 				</div>
 			{/each}
 		</div>
@@ -212,17 +205,6 @@
 		border-radius: 5px;
 		padding: 1rem;
 	}
-	.tool-list {
-		list-style: none;
-		margin: 0;
-		padding-left: 0%;
-	}
-	.tool {
-		/* color: #3198fc; */
-		/* font-weight: bold; */
-		font-style: italic;
-		/* background-color: var(--tool-blue); */
-	}
 	.introduction {
 		margin: 0 auto 0 auto;
 		max-width: 1000px;
@@ -241,12 +223,6 @@
 		text-decoration-line: underline;
 		text-decoration-color: rgb(205, 221, 255);
 		text-decoration-style: wavy;
-	}
-	dir {
-		height: fit-content;
-		padding-bottom: 2%;
-		margin: 0;
-		margin-top: 2%;
 	}
 	h1 {
 		width: fit-content;
@@ -298,22 +274,10 @@
 		font-weight: 500;
 	}
 
-	button {
-		padding: 0.5em;
-		/* background-color: var(--orange); */
-		border: 2px solid var(--blue);
-		border-radius: 5px;
-		font-size: medium;
-	}
-
-	button:hover {
-		cursor: pointer;
-	}
-
 	.project {
 		/* border: 1px solid rgba(185, 185, 185, 0); */
 		/* box-shadow: rgba(166, 211, 255, 0.3) 0px 0px 24px; */
-		/* border-radius: 5px; */
+		border-radius: 5px;
 		/* padding: 0.5rem; */
 	}
 
@@ -327,6 +291,7 @@
 
 	.container {
 		display: flex;
+		/* grid-template-columns: 1fr 1fr; */
 		flex-direction: column;
 		gap: 2rem;
 	}
@@ -337,8 +302,17 @@
 	}
 
 	.project-container {
-		display: flex;
-		flex-direction: row;
-		gap: 1rem;
+		/* border: 1px solid rgba(185, 185, 185, 0.5); */
+		/* box-shadow: rgba(166, 211, 255, 0.3) 0px 0px 24px; */
+		border-radius: 5px;
+		/* display: flex; */
+		/* flex-direction: row; */
+		/* gap: 1rem; */
+	}
+
+	.project-date {
+		font-weight: 500;
+		color: rgb(54, 54, 54);
+		width: fit-content;
 	}
 </style>
