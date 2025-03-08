@@ -87,6 +87,17 @@
 		list-style: none;
 	}
 
+	@media (max-width: 1600px) {
+		ul {
+			flex-direction: row;
+			max-width: 800px;
+			gap: 1rem;
+			margin: auto;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
 	li {
 		padding: 1%;
 		display: flex;

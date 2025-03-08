@@ -25,7 +25,7 @@
 </div>
 
 <style>
-	@media (min-width: 1200px) {
+	@media (min-width: 1600px) {
 		.main-page {
 			padding-left: 10em;
 		}
@@ -58,7 +58,7 @@
 		}
 	}
 
-	@media (max-width: 1200px) {
+	@media (max-width: 1600px) {
 		.content {
 			margin: 0 5%;
 		}

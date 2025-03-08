@@ -7,6 +7,7 @@
 	import HoverPeek from '../components/HoverPeek.svelte';
 	import Tag from '../components/Tag.svelte';
 	import favicon from '$lib/images/favicon.ico';
+	import NavBar from './NavBar.svelte';
 
 	export let data;
 	/**
@@ -48,6 +49,9 @@
 		<span style="color:gray"> (aka. feeding my curiosty and suiting my needs) </span>
 		<p>Basically, I'm a software engineer, from Tunisia.</p>
 	</div>
+	<div class="navbar">
+		<NavBar />
+	</div>
 	<div class="introduction" style="margin-top: 7rem;">
 		<div class="card">
 			<h1><span style="color:var(--orange);">*</span> Latest news!</h1>
@@ -84,9 +88,9 @@
 		</h1>
 
 		<p>
-			During my time at the engineering school, I had been captivated with some of the concepts 
-			and so I spared some time to create some visualizations for them, deepening my
-			understanding and sharing them with the class.
+			During my time at the engineering school, I had been captivated with some of the concepts and
+			so I spared some time to create some visualizations for them, deepening my understanding and
+			sharing them with the class.
 		</p>
 
 		<div class="container">
@@ -314,5 +318,26 @@
 		font-weight: 500;
 		color: rgb(54, 54, 54);
 		width: fit-content;
+	}
+
+	@media (max-width: 1600px) {
+		.navbar {
+			position: sticky;
+			display: inline;
+			top: 5%;
+			height: fit-content;
+			margin-top: 26rem;
+			/* margin-right: auto; */
+			padding-left: 10em;
+			/* padding-right: 10em; */
+			font-weight: 500;
+			font-size: 16px;
+		}
+	}
+
+	@media (min-width: 1600px) {
+		.navbar {
+			display: none;
+		}
 	}
 </style>
