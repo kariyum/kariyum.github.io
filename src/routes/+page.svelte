@@ -52,7 +52,7 @@
 	<div class="navbar">
 		<NavBar />
 	</div>
-	<div class="introduction" style="margin-top: 7rem;">
+	<div class="introduction spacing">
 		<div class="card">
 			<h1><span style="color:var(--orange);">*</span> Latest news!</h1>
 			<p>
@@ -322,14 +322,9 @@
 
 	@media (max-width: 1600px) {
 		.navbar {
-			position: sticky;
 			display: inline;
 			top: 5%;
-			height: fit-content;
-			margin-top: 26rem;
-			/* margin-right: auto; */
 			padding-left: 10em;
-			/* padding-right: 10em; */
 			font-weight: 500;
 			font-size: 16px;
 		}
@@ -338,6 +333,10 @@
 	@media (min-width: 1600px) {
 		.navbar {
 			display: none;
+		}
+
+		.spacing {
+			margin-top: 7rem;
 		}
 	}
 </style>
