@@ -26,9 +26,6 @@
 
 <style>
 	@media (min-width: 1600px) {
-		.main-page {
-			padding-left: 10em;
-		}
 
 		.content {
 			margin: 0 5%;
@@ -44,7 +41,7 @@
 			height: fit-content;
 			margin-top: 26rem;
 			/* margin-right: auto; */
-			padding-left: 10em;
+			padding-left: 2em;
 			/* padding-right: 10em; */
 			font-weight: 500;
 			font-size: 16px;
