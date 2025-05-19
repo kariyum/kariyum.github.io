@@ -164,6 +164,11 @@
 				<li>
 					<a href="https://ryhl.io/blog/async-what-is-blocking/">Async what is blocking?</a>
 				</li>
+				<li>
+					<a href="https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/"
+						>Prase Don't Validate</a
+					>
+				</li>
 			</ul>
 			and books
 			<ul>
