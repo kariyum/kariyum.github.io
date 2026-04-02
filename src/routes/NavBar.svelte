@@ -4,124 +4,134 @@
 	import github from '$lib/images/github.svg';
 	import { base } from '$app/paths';
 	import karim_ben_amara_resume from '$lib/karim_ben_amara_resume.pdf';
+	import ThemeToggle from '../components/ThemeToggle.svelte';
 </script>
 
-<nav>
-	<ul>
-		<!-- <li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-			<a href="/about">⚙️ Favorite Projects</a>
-		</li> -->
-		<li>
-			<a href="{base}/">🏠 Home</a>
-		</li>
-		<li>
-			<a href="#blogs">📝 Blogs</a>
-		</li>
-		<li>
-			<img src={github} alt="">
-			<a href="https://github.com/kariyum" target="_blank">
-				Github
-			</a>
-		</li>
-		<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-			<img src={linkedin} alt="">
-			<a href="https://www.linkedin.com/in/karim-ben-amara-01282a1ba/" target="_blank">
-				LinkedIn
-			</a>
-		</li>
-		<li>
-			<a target="_blank" href={karim_ben_amara_resume}>📑 Resume</a>
-		</li>
-	</ul>
-	
+<nav class="navbar">
+	<div class="nav-content">
+		<div class="brand">
+			<a href="{base}/" class="logo">KBA<span>.</span></a>
+		</div>
+		<ul class="nav-links">
+			<li>
+				<a href="{base}/" class:active={$page.url.pathname === '/'}>Home</a>
+			</li>
+			<li>
+				<a href="#blogs">Readings</a>
+			</li>
+			<li>
+				<a target="_blank" href={karim_ben_amara_resume}>Resume</a>
+			</li>
+			<li class="social-icons">
+				<a href="https://github.com/kariyum" target="_blank" aria-label="Github">
+					<img src={github} alt="Github" />
+				</a>
+				<a href="https://www.linkedin.com/in/karim-ben-amara-01282a1ba/" target="_blank" aria-label="LinkedIn">
+					<img src={linkedin} alt="LinkedIn" />
+				</a>
+			</li>
+			<li class="theme-toggle-li">
+				<ThemeToggle />
+			</li>
+		</ul>
+	</div>
 </nav>
 
 <style>
-
-	/* @media (min-width: 1200px) {
-		header {
-			position: sticky;
-			top: 4%;
-			margin: auto;
-			width: 40%;
-			margin-top: 50vh;
-            padding-left: 100%;
-			flex-grow: 2;
-			font-weight: 500;
-			font-size: 16px;
-		}
-	} */
-
-	/* @media (max-width: 1200px) {
-		header {
-			position: absolute;
-			top: 4%;
-			margin: auto;
-			width: 40%;
-			margin-top: 50vh;
-			font-weight: 500;
-			font-size: 16px;
-		}
-	} */
-
-    /* header {
-        font-weight: 500;
-        font-size: 16px;
-    } */
-
-	li > img {
-		/* width: 1.5em; */
-		width: 1.4em;
-		margin-right: 7px;
+	.navbar {
+		position: sticky;
+		top: 0;
+		z-index: 1000;
+		background: rgba(252, 252, 252, 0.8);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-bottom: 1px solid var(--border-light);
+		padding: 0.75rem 0;
+		width: 100%;
+		transition: background-color 0.3s ease, border-color 0.3s ease;
 	}
 
-	ul {
-		padding: 0;
-		margin: 0;
+	[data-theme="dark"] .navbar {
+		background: rgba(15, 23, 42, 0.8);
+	}
+
+	.nav-content {
+		max-width: 1000px;
+		margin: 0 auto;
 		display: flex;
-		width: 100%;
-		flex-direction: column;
-		flex-wrap: wrap;
 		justify-content: space-between;
-		align-items: start;
+		align-items: center;
+		padding: 0 1.5rem;
+	}
+
+	.brand .logo {
+		font-size: 1.5rem;
+		font-weight: 800;
+		color: var(--text-primary);
+		letter-spacing: -0.025em;
+	}
+
+	.brand .logo span {
+		color: var(--accent-orange);
+	}
+
+	.nav-links {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		margin: 0;
+		padding: 0;
 		list-style: none;
 	}
 
-	@media (max-width: 1600px) {
-		ul {
-			flex-direction: row;
-			max-width: 800px;
-			gap: 1rem;
-			margin: auto;
-			align-items: center;
-			justify-content: center;
-		}
+	.nav-links a {
+		font-size: 0.95rem;
+		font-weight: 500;
+		color: var(--text-secondary);
+		transition: color 0.2s ease;
 	}
 
-	li {
-		padding: 1%;
+	.nav-links a:hover, .nav-links a.active {
+		color: var(--text-primary);
+	}
+
+	.social-icons {
 		display: flex;
-		flex-direction: row;
-		align-items: start;
-		transition: 
-			background-color 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95), 
-			border-bottom 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-		border: 2px solid transparent;
+		gap: 1rem;
+		align-items: center;
+		border-left: 1px solid var(--border-light);
+		padding-left: 1rem;
 	}
 
-	a {
+	.social-icons img {
+		width: 1.25rem;
+		height: 1.25rem;
+		opacity: 0.7;
+		transition: opacity 0.2s ease, filter 0.3s ease;
+	}
+
+	[data-theme="dark"] .social-icons img {
+		filter: invert(1) brightness(0.9);
+	}
+
+	.social-icons a:hover img {
+		opacity: 1;
+	}
+
+	.theme-toggle-li {
 		display: flex;
 		align-items: center;
-		justify-content: center;
-		color: var(--color-text);
-		/* text-transform: uppercase; */
-		letter-spacing: 0.1em;
-		text-decoration: none;
 	}
 
-	li:hover {
-		cursor: pointer;
-		border-bottom: 2px solid rgb(205, 221, 255);
-		background-color: rgb(255, 246, 236);
+	@media (max-width: 640px) {
+		.nav-links {
+			gap: 1rem;
+		}
+		.social-icons {
+			display: none;
+		}
+		.nav-links a {
+			font-size: 0.875rem;
+		}
 	}
 </style>

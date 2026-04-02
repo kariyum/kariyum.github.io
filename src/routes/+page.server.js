@@ -32,57 +32,60 @@ export function load() {
   };
   const projects = [
     {
-      "title": "🐜 Ant Colony Optimization (ACO)",
-      "keywords": ["Visualization", "Metaheuristic", "Optimization", "Search-Algorithms"],
+      "title": "Distributed Metaheuristic Optimization Visualizer",
+      "keywords": ["Visualization", "Metaheuristic", "Optimization", "Search-Algorithms", "TSP"],
       "body": [
-        `Ant Colony Optimization is a metaheuristic approach that is well known as a solution approximator for the NP-Complete <a class="link" href="https://brilliant.org/wiki/traveling-salesperson-problem/" >Traveling Salesman Problem (TSP).</a >`,
-        'I have implemented a visualization of the ACO algorithm to solve the TSP problem. The visualization is interactive and allows you to change the parameters of the ACO algorithm and see how it affects the search.',
-        'Click <a href="/ant_colony_optimization/index.html" class="subtitle-link"> here</a> to go to the visualization.'
+        "Engineered an interactive visualization for Ant Colony Optimization to solve the NP-Complete TSP, featuring real-time parameter tuning and convergence analysis.",
+        'Experience the live simulation <a href="/ant_colony_optimization/index.html" class="subtitle-link">here</a>.'
       ],
       "github": "https://github.com/kariyum/ant_colony_optimization.git",
       "start_date": "2021-06-01",
       "end_date": "2021-06-30",
-      "techStack": ["Javascript"],
+      "techStack": ["JavaScript", "HTML5 Canvas"],
     },
     {
-      "title": "Neural Drone",
-      "keywords": ["Neural Networks", "Machine Learning", "Heuristics", "Genetic-Algorithm"],
+      "title": "Autonomous Agent Evolution Framework",
+      "keywords": ["Neural Networks", "Evolutionary-AI", "Genetic-Algorithms", "Simulation"],
       "github": "https://github.com/kariyum/neural_drone",
-      "body": ['<p> A simple neural network learning to control a Drone and avoid crushing (keep the drone within the screen) for as long as possible using genetic algorithm as the neural network optimizer. </p>'],
+      "body": [
+        "Developed an evolutionary simulation environment where agents utilize feed-forward neural networks and genetic algorithms to optimize survival behaviors in dynamic spaces."
+      ],
       "start_date": "2022-12-01",
       "end_date": "2023-01-01",
-      "techStack": ["Python","Pygame"],
+      "techStack": ["Python", "Pygame", "NumPy"],
     },
     {
-      "title": "Single Machine Scheduling Problem",
-      "keywords": ["NP-Hard", "Optimization", "Genetic-Algorithm", "Metaheuristic", "Branch&Bound", "ACO"],
-      "body": ['Leveraging different heuristics and meta-heuristics approaches to explore the solution search space. Comparing their speed and best found solution.'],
+      "title": "Heuristic Search Space Explorer",
+      "keywords": ["Combinatorial-Optimization", "NP-Hard", "Benchmarking", "Algorithm-Analysis"],
+      "body": [
+        "Architected a benchmarking suite comparing Branch & Bound, Genetic Algorithms, and ACO to analyze search-space exploration strategies for NP-Hard scheduling."
+      ],
       "github": "https://github.com/kariyum/single_machine_scheduling_problem",
       "start_date": "2022-01-01",
       "end_date": "2022-01-01",
-      "techStack": ["Python"],
+      "techStack": ["Python", "Matplotlib"],
     },
     {
-      "title": "Program Insights",
-      "keywords": ["Web-App", "Benchmarking", "Performance", "Analysis"],
+      "title": "High-Throughput Performance Profiling Suite",
+      "keywords": ["Distributed-Systems", "Observability", "Benchmarking", "Real-time-Analytics"],
       "body": [
-        "A web app that accepts metrics streaming and neatly displays them in a sorted table adding in some valuable information such as the min, max, average of the function's running time and and it's cpu occupation in milliseconds.",
-        "I felt the need of such an app to effectively find bottlenecks in a webservice."],
+        "Designed a real-time observability platform for ingesting and visualizing high-frequency metric streams to identify and resolve performance bottlenecks in distributed architectures."
+      ],
       "github": "https://github.com/kariyum/program-insights",
       "start_date": "2024-04-01",
       "end_date": "2024-04-01",
-      "techStack": ["Svelte", "Javascript", "Scala"],
+      "techStack": ["SvelteKit", "Scala", "ZIO", "Postgres"],
     },
     {
-      "title": "Expense Tracker",
-      "keywords": ["Mobile-App", "Expenses"],
+      "title": "Personal Finance Analytics Engine",
+      "keywords": ["Mobile-Development", "Data-Aggregation", "Analytics", "UX-Design"],
       "body": [
-        `Mobile app useful to track one's day to day expenses, extract some valuable information with some aggregations and graphs.`
+        "Architected a cross-platform mobile engine for granular financial tracking, featuring high-performance data aggregation and interactive analytics layers."
       ],
       "start_date": "2023-06-01",
       "github": "https://github.com/kariyum/wallet",
       "end_date": "2023-06-01",
-      "techStack": ["Flutter"],
+      "techStack": ["Flutter", "Dart", "SQLite"],
     }
   ];
   return {

@@ -1,34 +1,25 @@
 
-
 <div>
     <slot/>
 </div>
 
 <style>
     div {
-        margin: 2% 1% 0 0;
-        padding: 2px 10px;
-        background-color: rgb(243, 243, 243);
-        color: black; /* #3e606e; */
+        margin: 0.25rem 0.25rem 0 0;
+        padding: 0.125rem 0.75rem;
+        background-color: var(--tag-bg, #f3f4f6);
+        color: var(--tag-text, #374151);
         display: inline-block;
-        height: min-content;
-        border-radius: 45px;
-        font-size: medium;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: 1px solid var(--border-light, #e5e7eb);
+        line-height: 1.5;
     }
-    /* div {
-        color: #3a7891;
-        font-weight: bold;
-        background-color: var(--blue);
-        width: fit-content;
-        display: inline;
-        height: min-content;
-        border-radius: 45px;
-        font-size: medium;
-        padding: 4px;
-        margin: 40px;
-    } */
 
     div::before {
         content: "#";
+        margin-right: 0.125rem;
+        opacity: 0.5;
     }
 </style>
