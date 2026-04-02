@@ -198,9 +198,9 @@
 			hover_container = document.createElement('div');
 			hover_container.id = 'hover_container';
 			hover_container.style.position = 'absolute';
-			hover_container.style.border = '1px solid #ddd';
-			hover_container.style.boxShadow = '1px 1px 1px #ddd';
-			hover_container.style.background = 'white';
+			hover_container.style.border = '1px solid var(--border-light)';
+			hover_container.style.boxShadow = 'var(--card-shadow)';
+			hover_container.style.background = 'var(--bg-secondary)';
 			hover_container.style.borderRadius = '4px';
 			hover_container.style.padding = '4px';
 			hover_container.style.width = 'fit-content';
@@ -311,9 +311,9 @@
 
 	.tooltip {
 		display: None;
-		border: 1px solid #ddd;
-		box-shadow: 1px 1px 1px #ddd;
-		background: white;
+		border: 1px solid var(--border-light);
+		box-shadow: var(--card-shadow);
+		background: var(--bg-secondary);
 		border-radius: 4px;
 		padding: 4px;
 		position: absolute;
@@ -327,7 +327,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(0, 0, 0, 0.1);
+		background-color: rgba(0, 0, 0, 0.4);
 		-webkit-backdrop-filter: blur(5px);
 		backdrop-filter: blur(2px);
 		z-index: 1;
