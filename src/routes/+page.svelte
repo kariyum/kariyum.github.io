@@ -413,7 +413,43 @@
 	.index-row:not(.header-row):hover {
 		background: var(--card-hover-bg);
 	}
-...
+
+	.header-row {
+		background: var(--tag-bg);
+		cursor: default;
+		font-family: 'Fira Mono', monospace;
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: var(--text-secondary);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.col-title {
+		font-weight: 700;
+		color: var(--text-primary);
+	}
+
+	.col-tech {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+	}
+
+	.tech-pill {
+		font-size: 0.7rem;
+		background: var(--border-light);
+		padding: 0.1rem 0.4rem;
+		border-radius: 3px;
+		color: var(--text-secondary);
+	}
+
+	.col-date {
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+		text-align: right;
+	}
+
 	.index-details {
 		background: var(--hover-overlay);
 		border-bottom: 1px solid var(--border-light);
