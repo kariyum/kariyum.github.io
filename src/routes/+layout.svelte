@@ -59,8 +59,9 @@
 		transition: background-color 0.3s ease, border-color 0.3s ease;
 	}
 
-	[data-theme="dark"] .footer {
-		background: rgba(15, 23, 42, 0.5);
+	:global([data-theme="dark"]) .footer {
+		background: #0f172a;
+		border-top: 1px solid var(--border-light);
 	}
 
 	.footer-content {

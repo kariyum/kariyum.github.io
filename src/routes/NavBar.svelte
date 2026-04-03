@@ -51,8 +51,20 @@
 		transition: background-color 0.3s ease, border-color 0.3s ease;
 	}
 
-	[data-theme="dark"] .navbar {
-		background: rgba(15, 23, 42, 0.8);
+	:global([data-theme="dark"]) .navbar {
+		background: rgba(15, 23, 42, 0.9);
+		border-bottom: 1px solid var(--border-light);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+	}
+
+	:global([data-theme="dark"]) .nav-links a {
+		color: #94a3b8;
+	}
+
+	:global([data-theme="dark"]) .nav-links a:hover, 
+	:global([data-theme="dark"]) .nav-links a.active {
+		color: #f8fafc;
 	}
 
 	.nav-content {
@@ -110,7 +122,7 @@
 		transition: opacity 0.2s ease, filter 0.3s ease;
 	}
 
-	[data-theme="dark"] .social-icons img {
+	:global([data-theme="dark"]) .social-icons img {
 		filter: invert(1) brightness(0.9);
 	}
 
