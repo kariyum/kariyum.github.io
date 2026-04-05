@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 
-	let isDarkMode = false;
+	let isDarkMode = $state(false);
 
 	onMount(() => {
 		isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -21,7 +21,7 @@
 
 <button
 	class="theme-toggle"
-	on:click={toggleTheme}
+	onclick={toggleTheme}
 	aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
 >
 	{#if isDarkMode}

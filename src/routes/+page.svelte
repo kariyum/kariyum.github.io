@@ -8,9 +8,9 @@
 	import Tag from '../components/Tag.svelte';
 	import favicon from '$lib/images/favicon.ico';
 
-	export let data;
+	let { data } = $props();
 
-	let currentLayout = 'card'; // 'card', 'index', 'minimal', 'block'
+	let currentLayout = $state('block'); // 'card', 'index', 'minimal', 'block'
 	let expandedProject = null;
 
 	function toggleProject(title) {
@@ -40,195 +40,45 @@
 
 <section class="hero fade-in">
 	<h1 class="slogan">
-		turning ideas into real life <span class="highlight">products</span> is my thing.
+		bringing ideas into real life <span class="highlight">products</span> is my thing.
 	</h1>
 	<p class="subtitle">(aka. feeding my curiosity and suiting my needs)</p>
-	<p class="bio">I'm a software engineer from Tunisia, passionate about building robust systems and interactive visualizations.</p>
-</section>
-
-<section class="latest-news fade-in">
-	<div class="section-header">
-		<span class="section-label">CURRENT FOCUS</span>
-		<h2 class="section-title">Latest News</h2>
-	</div>
-	<div class="news-card">
-		<p>
-			Architecting a freelancer marketplace for Tunisia, prioritizing seamless matching and optimized project lifecycle management.
+	<div>
+		<p class="bio">
+			I'm a software engineer from Tunisia, passionate about building robust systems and interactive
+			visualizations.
 		</p>
-		<p class="tech-stack-inline">
-			<span>SvelteKit</span> • <span>Rust</span> • <span>Postgres</span>
-		</p>
+		<a href="/about"> More about me </a>
 	</div>
-</section>
-
-<section class="curiosity fade-in">
-	<div class="section-header">
-		<span class="section-label">TECHNICAL INTERESTS</span>
-		<h2 class="section-title">Systems & Architecture</h2>
-	</div>
-	<p class="section-desc">
-		Passionate about backend engineering, building robust systems from the ground up, and optimizing for high-impact user experiences.
-	</p>
 </section>
 
 <section class="projects-grid fade-in">
-	<div class="projects-header-row">
-		<div class="section-header">
-			<span class="section-label">ENGINEERING</span>
-			<h2 class="section-title">Selected Projects</h2>
-		</div>
-		<div class="layout-switcher">
-			<button class:active={currentLayout === 'card'} on:click={() => currentLayout = 'card'}>Card</button>
-			<button class:active={currentLayout === 'index'} on:click={() => currentLayout = 'index'}>Index</button>
-			<button class:active={currentLayout === 'minimal'} on:click={() => currentLayout = 'minimal'}>Minimal</button>
-			<button class:active={currentLayout === 'block'} on:click={() => currentLayout = 'block'}>Block</button>
-		</div>
+	<div class="section-header">
+		<span class="section-label">TECHNICAL INTERESTS</span>
+		<h2 class="section-title">Hobby Projects</h2>
 	</div>
-
-	{#if currentLayout === 'card'}
-		<div class="grid">
-			{#each data.projects_curiosity as project}
-				<div class="project-card">
-					<div class="project-main-info">
-						<div class="project-header">
-							<h3>{project.title}</h3>
-							<span class="project-date">{projectDates(project.start_date, project.end_date)}</span>
-						</div>
-						<div class="project-body">
-							{#each project.body as description}
-								<p>{@html description}</p>
-							{/each}
-						</div>
-						<div class="tags">
-							{#each project.keywords as keyword}
-								<Tag>{keyword}</Tag>
-							{/each}
-						</div>
-					</div>
-					<div class="project-side-info">
-						<div class="tech-section">
-							<h4>Tech Stack</h4>
-							<div class="tech-list">
-								{#each project.techStack as tool}
-									<span class="tech-item">{tool}</span>
-								{/each}
-							</div>
-						</div>
-						<div class="links-section">
-							<h4>Repository</h4>
-							<a class="github-link" href={project.github} target="_blank" rel="noopener noreferrer">
-								{project.to_repo} →
-							</a>
-						</div>
-					</div>
-				</div>
-			{/each}
-		</div>
-	{:else if currentLayout === 'index'}
-		<div class="system-index">
-			<div class="index-row header-row">
-				<span class="col-title">Project Title</span>
-				<span class="col-tech">Technologies</span>
-				<span class="col-date">Timeline</span>
-			</div>
-			{#each data.projects_curiosity as project}
-				<div class="index-row-container" class:expanded={expandedProject === project.title}>
-					<button class="index-row" on:click={() => toggleProject(project.title)}>
-						<span class="col-title">{project.title}</span>
-						<span class="col-tech">
-							{#each project.techStack as tool}
-								<span class="tech-pill">{tool}</span>
-							{/each}
-						</span>
-						<span class="col-date">{projectDates(project.start_date, project.end_date)}</span>
-					</button>
-					{#if expandedProject === project.title}
-						<div class="index-details">
-							<div class="details-content">
-								<div class="project-body">
-									{#each project.body as description}
-										<p>{@html description}</p>
-									{/each}
-								</div>
-								<div class="details-footer">
-									<div class="tags">
-										{#each project.keywords as keyword}
-											<Tag>{keyword}</Tag>
-										{/each}
-									</div>
-									<a class="github-link" href={project.github} target="_blank" rel="noopener noreferrer">
-										{project.to_repo} →
-									</a>
-								</div>
-							</div>
-						</div>
-					{/if}
-				</div>
-			{/each}
-		</div>
-	{:else if currentLayout === 'minimal'}
-		<div class="minimal-list">
-			{#each data.projects_curiosity as project}
-				<div class="minimal-item">
-					<div class="minimal-main">
-						<h3 class="minimal-title">{project.title}</h3>
-						<span class="minimal-date">{projectDates(project.start_date, project.end_date)}</span>
-					</div>
-					<div class="minimal-reveal">
-						<div class="project-body">
-							{#each project.body as description}
-								<p>{@html description}</p>
-							{/each}
-						</div>
-						<div class="minimal-footer">
-							<div class="tech-list">
-								{#each project.techStack as tool}
-									<span class="tech-item">{tool}</span>
-								{/each}
-							</div>
-							<a class="github-link" href={project.github} target="_blank" rel="noopener noreferrer">
-								{project.to_repo} →
-							</a>
-						</div>
-					</div>
-				</div>
-			{/each}
-		</div>
-	{:else if currentLayout === 'block'}
-		<div class="feature-blocks">
-			{#each data.projects_curiosity as project}
-				<div class="feature-block">
-					<div class="block-header">
-						<h3>{project.title}</h3>
-						<div class="block-meta">
-							<span class="project-date">{projectDates(project.start_date, project.end_date)}</span>
-							<span class="divider">/</span>
-							<div class="tech-inline">
-								{#each project.techStack as tool}
-									<span>{tool}</span>
-								{/each}
-							</div>
-						</div>
-					</div>
-					<div class="project-body">
-						{#each project.body as description}
-							<p>{@html description}</p>
+	<p class="section-desc">This is a list numerating some of my projects I have done in the past</p>
+	<div class="feature-blocks">
+		{#each data.projects_curiosity as project}
+			<div>
+				<div class="block-meta">
+					<span class="project-date">{projectDates(project.start_date, project.end_date)}</span>
+					<span class="divider">/</span>
+					<div class="tech-inline">
+						{#each project.techStack as tool}
+							<span>{tool}</span>
 						{/each}
 					</div>
-					<div class="block-footer">
-						<div class="tags">
-							{#each project.keywords as keyword}
-								<Tag>{keyword}</Tag>
-							{/each}
-						</div>
-						<a class="github-link" href={project.github} target="_blank" rel="noopener noreferrer">
-							{project.to_repo} →
-						</a>
-					</div>
 				</div>
-			{/each}
-		</div>
-	{/if}
+				<a href="{base}/{project.app_page_url}" class="link-branded">{project.title}</a>
+				<span class="project-body">
+					{#each project.body as description}
+						<span>{@html description}</span>
+					{/each}
+				</span>
+			</div>
+		{/each}
+	</div>
 </section>
 
 <section class="readings fade-in" id="blogs">
@@ -241,42 +91,61 @@
 		<div class="readings-column">
 			<h3>Articles</h3>
 			<ul class="reading-list">
-				<li><a href="https://discord.com/blog/why-discord-is-switching-from-go-to-rust/">Why Discord is Switching from Go to Rust</a></li>
-				<li><a href="https://discord.com/blog/how-discord-stores-billions-of-messages">How Discord Stores Billions of Messages</a></li>
-				<li><a href="https://samwho.dev/load-balancing/">Load Balancing Visualized</a></li>
-				<li><a href="https://nee.lv/2021/02/28/How-I-cut-GTA-Online-loading-times-by-70/">How I cut GTA Online loading times by 70%</a></li>
-				<li><a href="https://blog.neetcode.io/p/doordash-robust-microservices">Doordash Robust Microservices</a></li>
-				<li><a href="https://ryhl.io/blog/async-what-is-blocking/">Async what is blocking?</a></li>
-				<li><a href="https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/">Parse Don't Validate</a></li>
+				<li>
+					<a
+						href="https://discord.com/blog/why-discord-is-switching-from-go-to-rust/"
+						class="link-branded">Why Discord is Switching from Go to Rust</a
+					>
+				</li>
+				<li>
+					<a
+						href="https://discord.com/blog/how-discord-stores-billions-of-messages"
+						class="link-branded">How Discord Stores Billions of Messages</a
+					>
+				</li>
+				<li>
+					<a href="https://samwho.dev/load-balancing/" class="link-branded"
+						>Load Balancing Visualized</a
+					>
+				</li>
+				<li>
+					<a
+						href="https://nee.lv/2021/02/28/How-I-cut-GTA-Online-loading-times-by-70/"
+						class="link-branded">How I cut GTA Online loading times by 70%</a
+					>
+				</li>
+				<li>
+					<a href="https://blog.neetcode.io/p/doordash-robust-microservices" class="link-branded"
+						>Doordash Robust Microservices</a
+					>
+				</li>
+				<li>
+					<a href="https://ryhl.io/blog/async-what-is-blocking/" class="link-branded"
+						>Async what is blocking?</a
+					>
+				</li>
+				<li>
+					<a
+						href="https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/"
+						class="link-branded">Parse Don't Validate</a
+					>
+				</li>
 			</ul>
 		</div>
 		<div class="readings-column">
 			<h3>Books</h3>
 			<ul class="reading-list">
-				<li><a href="https://natureofcode.com/introduction/">Nature of Code</a></li>
+				<li>
+					<a href="https://natureofcode.com/introduction/" class="link-branded">Nature of Code</a>
+				</li>
 			</ul>
 		</div>
 	</div>
 </section>
 
-<section class="game-work fade-in">
-	<HoverPeek videoPath={reunited}>
-		<div class="section-header">
-			<span class="section-label">GAME PROJECT</span>
-			<h2 class="section-title">Reunited</h2>
-		</div>
-	</HoverPeek>
-	<div class="game-content">
-		<p>An interactive Unity game developed as a foundational project, exploring rapid prototyping and functional decomposition.</p>
-		<a href="https://play.unity.com/en/games/67ca8ced-59e7-4d36-bc9b-9a62b0b2b88d/reunited" class="github-link">
-			Play Reunited →
-		</a>
-	</div>
-</section>
-
 <style>
 	.hero {
-		margin: 2.5rem 0 4rem;
+		margin: 2.5rem 0;
 	}
 
 	.slogan {
@@ -313,7 +182,7 @@
 	}
 
 	.bio {
-		max-width: 600px;
+		display: inline;
 		font-size: 1.15rem;
 		color: var(--text-secondary);
 	}
@@ -353,7 +222,7 @@
 	.layout-switcher button.active {
 		background: var(--bg-secondary);
 		color: var(--accent-orange);
-		box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 	}
 
 	.section-header {
@@ -510,23 +379,11 @@
 		margin-top: 1rem;
 	}
 
-	/* Feature Blocks Layout */
 	.feature-blocks {
 		display: flex;
 		flex-direction: column;
-		gap: 4rem;
-	}
-
-	.feature-block {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-	}
-
-	.block-header h3 {
-		font-size: 2rem;
-		font-weight: 800;
-		margin-bottom: 0.5rem;
+		gap: 1rem;
+		margin: 1.5rem 0;
 	}
 
 	.block-meta {
@@ -586,7 +443,10 @@
 		display: grid;
 		grid-template-columns: 1fr 240px;
 		gap: 2rem;
-		transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+		transition:
+			transform 0.2s ease,
+			box-shadow 0.2s ease,
+			border-color 0.2s ease;
 		box-shadow: var(--card-shadow);
 	}
 
@@ -657,7 +517,8 @@
 		margin-bottom: 0.75rem;
 	}
 
-	.tech-section h4, .links-section h4 {
+	.tech-section h4,
+	.links-section h4 {
 		font-size: 0.75rem;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
@@ -726,15 +587,7 @@
 	}
 
 	.reading-list li a {
-		color: var(--text-secondary);
-		border-bottom: 1px solid transparent;
-		transition: all 0.2s ease;
 		font-size: 0.95rem;
-	}
-
-	.readings-list li a:hover {
-		color: var(--text-primary);
-		border-bottom: 1px solid var(--accent-orange);
 	}
 
 	.game-work {
@@ -760,18 +613,32 @@
 		margin-bottom: 1rem;
 	}
 
-	.fade-in {
+	/*.fade-in {
 		animation: fadeIn 0.8s ease-out forwards;
 		opacity: 0;
-	}
+	}*/
 
 	@keyframes fadeIn {
-		from { opacity: 0; transform: translateY(20px); }
-		to { opacity: 1; transform: translateY(0); }
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
-	.fade-in:nth-child(2) { animation-delay: 0.2s; }
-	.fade-in:nth-child(3) { animation-delay: 0.4s; }
-	.fade-in:nth-child(4) { animation-delay: 0.6s; }
-	.fade-in:nth-child(5) { animation-delay: 0.8s; }
+	.fade-in:nth-child(2) {
+		animation-delay: 0.2s;
+	}
+	.fade-in:nth-child(3) {
+		animation-delay: 0.4s;
+	}
+	.fade-in:nth-child(4) {
+		animation-delay: 0.6s;
+	}
+	.fade-in:nth-child(5) {
+		animation-delay: 0.8s;
+	}
 </style>

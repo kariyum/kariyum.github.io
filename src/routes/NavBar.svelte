@@ -1,5 +1,5 @@
 <script>
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import linkedin from '$lib/images/linkedin.svg';
 	import github from '$lib/images/github.svg';
 	import { base } from '$app/paths';
@@ -14,7 +14,7 @@
 		</div>
 		<ul class="nav-links">
 			<li>
-				<a href="{base}/" class:active={$page.url.pathname === '/'}>Home</a>
+				<a href="{base}/" class:active={page.url.pathname === '/'}>Home</a>
 			</li>
 			<li>
 				<a href="#blogs">Readings</a>

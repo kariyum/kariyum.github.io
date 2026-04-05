@@ -1,22 +1,24 @@
 <script>
-	export let videoPath;
+	import { run, nonpassive } from 'svelte/legacy';
+
 
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
+	let { videoPath, children } = $props();
 
 	/**
 	 * @type {HTMLVideoElement}
 	 */
-	let videoTag;
-	let coords = tweened(
+	let videoTag = $state();
+	let coords = $state(tweened(
 		{ x: 0, y: 0 },
 		{
 			duration: 400,
 			easing: cubicOut
 		}
-	);
+	));
 	let size = tweened(
 		{ width: 0 },
 		{
@@ -25,13 +27,13 @@
 		}
 	);
 
-	let popupSize = tweened(
+	let popupSize = $state(tweened(
 		{ width: 0 },
 		{
 			duration: 400,
 			easing: cubicOut
 		}
-	);
+	));
 
 	const min = (/** @type {number} */ a, /** @type {number} */ b) => (a < b ? a : b);
 	function initTweens() {
@@ -64,12 +66,12 @@
 		});
 	}
 	let initialized = false;
-	let isHovered = false;
-	let showPopup = false;
+	let isHovered = $state(false);
+	let showPopup = $state(false);
 	/**
 	 * @type {number | null}
 	 */
-	let clientWidth = null;
+	let clientWidth = $state(null);
 	/**
 	 * @type {number | null}
 	 */
@@ -81,7 +83,7 @@
 	/**
 	 * @type {HTMLDivElement | null}
 	 */
-	let hover_container;
+	let hover_container = $state();
 
 	/**
 	 * @type {number}
@@ -216,13 +218,13 @@
 		if (videoTag) videoTag.width = width;
 		if (!showPopup) popupSize.set({ width: width });
 	});
-	$: {
+	run(() => {
 		if (videoTag && !showPopup && !isHovered) {
 			videoTag.pause();
 		} else if (videoTag && showPopup) {
 			videoTag.width = $popupSize.width;
 		}
-	}
+	});
 
 	/**
 	 * @param { KeyboardEvent } keyboardEvent
@@ -239,20 +241,20 @@
 				break;
 		}
 	}
-	$: {
+	run(() => {
 		if (hover_container) {
 			hover_container.style.display = isHovered || showPopup ? 'block' : 'none';
 			hover_container.style.pointerEvents = showPopup ? 'all' : 'none';
 		}
-	}
+	});
 </script>
 
 <svelte:window
-	on:keydown={onKeyDown}
-	on:wheel|nonpassive={(e) => {
+	onkeydown={onKeyDown}
+	use:nonpassive={['wheel', () => (e) => {
 		if (showPopup) e.preventDefault();
-	}}
-	on:scroll={() => {
+	}]}
+	onscroll={() => {
 		if (videoTag && showPopup) {
 			coords.set({
 				x: Math.round(window.innerWidth / 2 - ((clientWidth || 1920) * 1000) / 1920 / 2),
@@ -266,18 +268,18 @@
 	}}
 />
 <button
-	on:mouseover={mouseOver}
-	on:mouseleave={mouseLeave}
-	on:mousemove={mouseMove}
+	onmouseover={mouseOver}
+	onmouseleave={mouseLeave}
+	onmousemove={mouseMove}
 	class="outer-container"
-	on:click={switchToPopup}
-	on:focus={() => (isHovered = true)}
+	onclick={switchToPopup}
+	onfocus={() => (isHovered = true)}
 	style="width:100%;"
 >
-	<slot />
+	{@render children?.()}
 </button>
 {#if showPopup}
-	<div class="container outer-container" on:click={closePopup} in:fade={{ duration: 200 }}></div>
+	<div class="container outer-container" onclick={closePopup} in:fade={{ duration: 200 }}></div>
 {/if}
 
 <!-- <div
