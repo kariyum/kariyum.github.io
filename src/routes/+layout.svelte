@@ -1,23 +1,23 @@
 <script>
 	import NavBar from './NavBar.svelte';
 	import './styles.css';
+	/**
+	 * @typedef {Object} Props
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let { children } = $props();
 </script>
 
 <div class="app-container">
-	<!-- Subtle background pattern -->
 	<div class="bg-pattern" aria-hidden="true"></div>
-	
-	<NavBar />
-	
-	<main class="content">
-		<slot />
-	</main>
 
-	<footer class="footer">
-		<div class="footer-content">
-			<p>&copy; {new Date().getFullYear()} Karim Ben Amara. Built with SvelteKit.</p>
-		</div>
-	</footer>
+	<NavBar />
+
+	<main class="content">
+		{@render children?.()}
+	</main>
 </div>
 
 <style>
@@ -52,14 +52,16 @@
 	}
 
 	.footer {
-		padding: 2.5rem 1.5rem;
+		padding: 1.5rem 1.5rem;
 		border-top: 1px solid var(--border-light);
 		background: rgba(255, 255, 255, 0.5);
 		backdrop-filter: blur(8px);
-		transition: background-color 0.3s ease, border-color 0.3s ease;
+		transition:
+			background-color 0.3s ease,
+			border-color 0.3s ease;
 	}
 
-	:global([data-theme="dark"]) .footer {
+	:global([data-theme='dark']) .footer {
 		background: #0f172a;
 		border-top: 1px solid var(--border-light);
 	}
