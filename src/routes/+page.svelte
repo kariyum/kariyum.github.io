@@ -44,11 +44,16 @@
 	</h1>
 	<p class="subtitle">(aka. feeding my curiosity and suiting my needs)</p>
 	<div>
-		<p class="bio">
-			I'm a software engineer from Tunisia, passionate about building robust systems and interactive
-			visualizations.
+		<p class="bio inline">
+			I'm a software engineer, passionate about building robust systems and interactive
+			visualizations. Many things capture my interest, and this site features some of them.
 		</p>
-		<a href="/about"> More about me </a>
+
+		<p class="bio">
+			Reach out: <a href="mailto:karimbenamara91@gmail.com" class="link-branded"
+				>karimbenamara91@gmail.com</a
+			>
+		</p>
 	</div>
 </section>
 
@@ -181,8 +186,11 @@
 		margin-bottom: 1.5rem;
 	}
 
-	.bio {
+	.inline {
 		display: inline;
+	}
+
+	.bio {
 		font-size: 1.15rem;
 		color: var(--text-secondary);
 	}
@@ -388,15 +396,17 @@
 
 	.block-meta {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
-		gap: 1rem;
+		column-gap: 1rem;
 		color: var(--text-secondary);
 		font-size: 0.9rem;
 	}
 
 	.tech-inline {
 		display: flex;
-		gap: 0.75rem;
+		flex-wrap: wrap;
+		column-gap: 0.75rem;
 		font-weight: 600;
 		color: var(--accent-orange);
 	}
