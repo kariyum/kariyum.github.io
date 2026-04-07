@@ -1,35 +1,9 @@
-<script>
-	import { base } from '$app/paths';
-	import drone_vid from '$lib/project_assets/drone/vid.mp4';
-	import maze from '$lib/project_assets/maze/maze.mp4';
-	import reunited from '$lib/project_assets/reunited/reunited.mp4';
-	import ants from '$lib/project_assets/simulation/ants.mp4';
-	import HoverPeek from '../components/HoverPeek.svelte';
-	import Tag from '../components/Tag.svelte';
+<script lang="ts">
+	import { resolve } from '$app/paths';
 	import favicon from '$lib/images/favicon.ico';
+	import { projectDates } from '$lib/utils.js';
 
 	let { data } = $props();
-
-	let currentLayout = $state('block'); // 'card', 'index', 'minimal', 'block'
-	let expandedProject = null;
-
-	function toggleProject(title) {
-		expandedProject = expandedProject === title ? null : title;
-	}
-
-	function formatDate(date) {
-		const options = { year: 'numeric', month: 'long' };
-		return new Date(date).toLocaleDateString('en-US', options);
-	}
-
-	function projectDates(start, end) {
-		const startDate = formatDate(start);
-		const endDate = formatDate(end);
-		if (startDate === endDate) {
-			return startDate;
-		}
-		return `${startDate} → ${endDate}`;
-	}
 </script>
 
 <svelte:head>
@@ -75,7 +49,9 @@
 						{/each}
 					</div>
 				</div>
-				<a href="{base}/{project.app_page_url}" class="link-branded">{project.title}</a>
+				<a href={resolve('/[project]', { project: project.app_page_url })} class="link-branded"
+					>{project.title}</a
+				>
 				<span class="project-body">
 					{#each project.body as description}
 						<span>{@html description}</span>

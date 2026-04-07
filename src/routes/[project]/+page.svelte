@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
 	import drone_vid from '$lib/project_assets/drone/vid.mp4';
@@ -43,7 +43,7 @@
 
 <div class="project-page fade-in">
 	<header class="project-header">
-		<a href="{base}/" class="back-link">← Back to Home</a>
+		<button onclick={() => history.back()}>← Back to Home</button>
 		<div class="header-main">
 			<h1 class="project-title">{project.title}</h1>
 			<div class="project-meta">
