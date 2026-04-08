@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import favicon from '$lib/images/favicon.ico';
 	import { projectDates } from '$lib/utils.js';
+	import karim_ben_amara_resume from '$lib/karim_ben_amara_resume.pdf';
 
 	let { data } = $props();
 </script>
@@ -27,6 +28,11 @@
 			Reach out: <a href="mailto:karimbenamara91@gmail.com" class="link-branded"
 				>karimbenamara91@gmail.com</a
 			>
+		</p>
+		<p class="bio">
+			Find me: <a href="https://github.com/kariyum" class="link-branded">GitHub</a>
+			<a href="https://github.com/kariyum" class="link-branded">LinkedIn</a>
+			<a target="_blank" href={karim_ben_amara_resume} class="link-branded">Resume</a>
 		</p>
 	</div>
 </section>
