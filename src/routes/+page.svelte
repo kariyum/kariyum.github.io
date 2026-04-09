@@ -30,9 +30,24 @@
 			>
 		</p>
 		<p class="bio">
-			Find me: <a href="https://github.com/kariyum" class="link-branded">GitHub</a>
-			<a href="https://github.com/kariyum" class="link-branded">LinkedIn</a>
-			<a target="_blank" href={karim_ben_amara_resume} class="link-branded">Resume</a>
+			Find me: <a
+				target="_blank"
+				rel="noreferrer noopener"
+				href="https://github.com/kariyum"
+				class="link-branded">GitHub</a
+			>
+			<a
+				href="https://www.linkedin.com/in/karim-ben-amara-01282a1ba/"
+				class="link-branded"
+				target="_blank"
+				rel="noreferrer noopener">LinkedIn</a
+			>
+			<a
+				target="_blank"
+				rel="noreferrer noopener"
+				href={karim_ben_amara_resume}
+				class="link-branded">Resume</a
+			>
 		</p>
 	</div>
 </section>
