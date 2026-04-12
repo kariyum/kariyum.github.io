@@ -1,8 +1,26 @@
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
 export const prerender = true;
 export const ssr = false;
-// export const csr = false;
+
+interface RawProjectMetadata {
+	title: string;
+	keywords: string[];
+	body: string[];
+	github: string;
+	tech_stack: string[];
+	app_page_url: string;
+}
+
+interface RawProject extends RawProjectMetadata {
+	start_date: string;
+	end_date: string;
+}
+
+export interface Project extends RawProjectMetadata {
+	start_date: Date;
+	end_date: Date;
+	to_repo: string;
+}
+
 export function load() {
 	const githubs = [
 		'Show me the repo!',
@@ -35,18 +53,18 @@ export function load() {
 		counter++;
 		return github;
 	};
-	const projects = [
+	const projects: RawProject[] = [
 		{
 			title: 'www.nfreelanci.tn',
 			keywords: ['CRUD', 'Rust', 'Platform'],
 			body: [
-				'Developed a full stack freelancing platform for Tunisians, featuring real time event updates, chat interface, Google SSO, CI/CD with github actions, trigrams entity search...'
+				'Developed full stack freelancing platform for Tunisians, featuring real time event updates, chat interface, Google SSO, CI/CD with github actions, trigrams entity search...'
 			],
 			github: 'https://github.com/kariyum/nfreelanci.tn.git',
 			start_date: '2024-09-01',
 			end_date: '2025-09-01',
-			techStack: ['Rust', 'Sveltekit', 'Postgres', 'Nginx', 'Docker', 'TypeScript', 'HTML5'],
-			app_page_url: 'nfreelancik'
+			tech_stack: ['Rust', 'Sveltekit', 'Postgres', 'Nginx', 'Docker', 'TypeScript', 'HTML5'],
+			app_page_url: 'nfreelanci'
 		},
 		{
 			title: 'Ant Colony Optimization Simulation',
@@ -64,7 +82,7 @@ export function load() {
 			github: 'https://github.com/kariyum/ant_colony_optimization.git',
 			start_date: '2022-06-01',
 			end_date: '2022-06-30',
-			techStack: ['JavaScript', 'HTML5 Canvas'],
+			tech_stack: ['JavaScript', 'HTML5 Canvas'],
 			app_page_url: 'aco'
 		},
 		{
@@ -82,7 +100,7 @@ export function load() {
 			],
 			start_date: '2022-12-01',
 			end_date: '2023-01-01',
-			techStack: ['Python', 'Pygame', 'NumPy'],
+			tech_stack: ['Python', 'Pygame', 'NumPy'],
 			app_page_url: 'autonomous-agent'
 		},
 		{
@@ -100,31 +118,31 @@ export function load() {
 			github: 'https://github.com/kariyum/single_machine_scheduling_problem',
 			start_date: '2022-01-01',
 			end_date: '2022-01-01',
-			techStack: ['Python', 'Matplotlib'],
+			tech_stack: ['Python', 'Matplotlib'],
 			app_page_url: 'single-machine-scheduling-problem'
 		},
 		{
-			title: 'High-Throughput Performance Profiling Suite',
+			title: 'High-Throughput Performance Profiling',
 			keywords: ['Distributed-Systems', 'Observability', 'Benchmarking', 'Real-time-Analytics'],
 			body: [
-				'Designed a real-time observability platform for ingesting and visualizing high-frequency metric streams to identify and resolve performance bottlenecks in distributed architectures.'
+				'Designed a real-time observability platform for ingesting and visualizing high-frequency metric streams to identify and resolve performance bottlenecks in a distributed architectures.'
 			],
 			github: 'https://github.com/kariyum/program-insights',
 			start_date: '2024-04-01',
 			end_date: '2024-04-01',
-			techStack: ['SvelteKit', 'Scala', 'Akka-streams'],
+			tech_stack: ['SvelteKit', 'Scala', 'Akka-streams'],
 			app_page_url: 'profiling-suite'
 		},
 		{
 			title: 'Personal Finance App',
 			keywords: ['Mobile-Development', 'Analytics', 'UX-Design'],
 			body: [
-				'Architected a cross-platform mobile app for granular and private financial tracking, featuring meaningful aggregations and insights.'
+				'A cross-platform mobile app for granular and private financial tracking, featuring meaningful aggregations and insights.'
 			],
 			start_date: '2023-06-01',
 			github: 'https://github.com/kariyum/wallet',
 			end_date: '2023-06-01',
-			techStack: ['Flutter', 'Dart', 'SQLite'],
+			tech_stack: ['Flutter', 'Dart', 'SQLite'],
 			app_page_url: 'personal-finance-app'
 		},
 		{
@@ -136,7 +154,7 @@ export function load() {
 			start_date: '2020-12-01',
 			github: 'https://play.unity.com/en/games/67ca8ced-59e7-4d36-bc9b-9a62b0b2b88d/reunited',
 			end_date: '2020-12-30',
-			techStack: ['Unity', 'C#'],
+			tech_stack: ['Unity', 'C#'],
 			app_page_url: 'reunited'
 		},
 		{
@@ -148,22 +166,11 @@ export function load() {
 			start_date: '2021-03-01',
 			github: 'https://github.com/kariyum/maze_solver',
 			end_date: '2021-03-30',
-			techStack: ['JavaScript', 'HTML5 Canvas'],
+			tech_stack: ['JavaScript', 'HTML5 Canvas'],
 			app_page_url: 'maze'
-		},
-		{
-			title: 'MIPS Simulation',
-			keywords: ['Computer-Architecture', 'Digital-Logic', 'Simulation', 'CPU-Design'],
-			body: [
-				'Implemented MIPS architecture on Digital Logic Sim from scratch. This project involved designing the datapath and control unit for a subset of MIPS instructions.'
-			],
-			start_date: '2021-09-01',
-			end_date: '2021-12-30',
-			techStack: ['Digital Logic Sim'],
-			app_page_url: 'mips'
 		}
 	];
-	const projects_typed = projects.map((project) => {
+	const projects_typed: Project[] = projects.map((project) => {
 		return {
 			...project,
 			start_date: new Date(project.start_date),

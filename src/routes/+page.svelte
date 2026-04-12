@@ -65,7 +65,7 @@
 					<span class="project-date">{projectDates(project.start_date, project.end_date)}</span>
 					<span class="divider">/</span>
 					<div class="tech-inline">
-						{#each project.techStack as tool}
+						{#each project.tech_stack as tool}
 							<span>{tool}</span>
 						{/each}
 					</div>
