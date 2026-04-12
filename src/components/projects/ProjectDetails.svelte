@@ -3,6 +3,7 @@
 	import type { Project } from '../../routes/+layout.server';
 	import { projectDates } from '$lib/utils';
 	import { MoveLeft } from '@lucide/svelte';
+	import { goto } from '$app/navigation';
 
 	interface Props {
 		children?: Snippet;
@@ -14,7 +15,18 @@
 
 <div class="project-page">
 	<header class="project-header">
-		<button class="back-button" onclick={() => history.back()}>
+		<button
+			class="back-button"
+			onclick={async () => {
+				const isInternal = document.referrer.includes(window.location.host);
+
+				if (isInternal && window.history.length > 1) {
+					history.back();
+				} else {
+					await goto('/');
+				}
+			}}
+		>
 			<MoveLeft size={'32px'} />
 		</button>
 		<div class="header-main">
@@ -42,6 +54,9 @@
 </div>
 
 <style>
+	:global(p) {
+		margin: 1rem 0;
+	}
 	.back-button {
 		border: none;
 		color: var(--accent-blue);
