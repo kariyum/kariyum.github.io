@@ -44,3 +44,9 @@
 
 	<h3>Features I have implemented</h3>
 </ProjectDetails>
+
+<style>
+	p {
+		margin: 1rem 0;
+	}
+</style>

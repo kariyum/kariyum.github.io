@@ -54,9 +54,6 @@
 </div>
 
 <style>
-	:global(p) {
-		margin: 1rem 0;
-	}
 	.back-button {
 		border: none;
 		color: var(--accent-blue);
