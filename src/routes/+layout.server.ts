@@ -4,7 +4,8 @@ interface RawProjectMetadata {
 	title: string;
 	keywords: string[];
 	body: string[];
-	github: string;
+	github?: string;
+	game_link?: string;
 	tech_stack: string[];
 	app_page_url: string;
 }
@@ -151,7 +152,7 @@ export function load() {
 				'Made this game back in december 2020 when covid-19 was everywhere and we had to be isolated at home. This project was the first project I have ever done. It is quite special for me because it taught me that the most important aspect about working on projects is to start prototyping asap, decompose the ideas into small components and just... do it.'
 			],
 			start_date: '2020-12-01',
-			github: 'https://play.unity.com/en/games/67ca8ced-59e7-4d36-bc9b-9a62b0b2b88d/reunited',
+			game_link: 'https://play.unity.com/en/games/67ca8ced-59e7-4d36-bc9b-9a62b0b2b88d/reunited',
 			end_date: '2020-12-30',
 			tech_stack: ['Unity', 'C#'],
 			app_page_url: 'reunited'

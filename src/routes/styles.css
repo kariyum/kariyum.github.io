@@ -1,46 +1,44 @@
 @import '@fontsource/fira-mono';
 
 :root {
-	--bg-primary: #fcfcfc;
-	--bg-secondary: #ffffff;
-	--text-primary: #111827;
-	--text-secondary: #4b5563;
-	--accent-orange: #ff7e34;
-	--accent-blue: #3b82f6;
-	--border-light: #e5e7eb;
-	--card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-	--card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-	--tag-bg: #f3f4f6;
-	--tag-text: #374151;
-
-	/* Old vars for compatibility (to be removed gradually) */
-	--beige: var(--bg-secondary);
-	--orange: var(--accent-orange);
-	--blue: #dbeafe;
-	--tool-blue: rgba(219, 234, 254, 0.5);
-	--gradient-opacity: 0.05;
-	--hover-overlay: rgba(0, 0, 0, 0.02);
-	--card-hover-bg: rgba(0, 0, 0, 0.01);
+	--bg-primary: light-dark(#fcfcfc, #0f172a);
+	--bg-secondary: light-dark(#ffffff, #1e293b);
+	--text-primary: light-dark(#111827, #f8fafc);
+	--text-secondary: light-dark(#4b5563, #94a3b8);
+	--accent-orange: light-dark(#ff7e34, #fb923c);
+	--accent-blue: light-dark(#3b82f6, #60a5fa);
+	--border-light: light-dark(#e5e7eb, #334155);
+	--card-shadow: light-dark(
+		0 4px 6px -1px rgba(0, 0, 0, 0.1),
+		0 2px 4px -1px rgba(0, 0, 0, 0.06),
+		0 4px 6px -1px rgba(0, 0, 0, 0.4),
+		0 2px 4px -1px rgba(0, 0, 0, 0.2)
+	);
+	--card-shadow-hover: light-dark(
+		0 10px 15px -3px rgba(0, 0, 0, 0.1),
+		0 4px 6px -2px rgba(0, 0, 0, 0.05),
+		0 10px 15px -3px rgba(0, 0, 0, 0.5),
+		0 4px 6px -2px rgba(0, 0, 0, 0.3)
+	);
+	--tag-bg: light-dark(#f3f4f6, #334155);
+	--tag-text: light-dark(#374151, #e2e8f0);
+	--blue: light-dark(#dbeafe, #1e3a8a);
+	--tool-blue: light-dark(rgba(219, 234, 254, 0.5), rgba(30, 58, 138, 0.5));
+	--gradient-opacity: light-dark(0.05, 0.15);
+	--hover-overlay: light-dark(rgba(0, 0, 0, 0.02), rgba(255, 255, 255, 0.05));
+	--card-hover-bg: light-dark(rgba(0, 0, 0, 0.01), rgba(255, 255, 255, 0.02));
 }
 
-[data-theme='dark'] {
-	--bg-primary: #0f172a;
-	--bg-secondary: #1e293b;
-	--text-primary: #f8fafc;
-	--text-secondary: #94a3b8;
-	--accent-orange: #fb923c;
-	--accent-blue: #60a5fa;
-	--border-light: #334155;
-	--card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-	--card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-	--tag-bg: #334155;
-	--tag-text: #e2e8f0;
+@media (prefers-color-scheme: dark) {
+	:root {
+		color-scheme: dark;
+	}
+}
 
-	--blue: #1e3a8a;
-	--tool-blue: rgba(30, 58, 138, 0.5);
-	--gradient-opacity: 0.15;
-	--hover-overlay: rgba(255, 255, 255, 0.05);
-	--card-hover-bg: rgba(255, 255, 255, 0.02);
+@media (prefers-color-scheme: light) {
+	:root {
+		color-scheme: light;
+	}
 }
 
 * {
@@ -69,11 +67,8 @@ body {
 	line-height: 1.6;
 	color: var(--text-primary);
 	background-color: var(--bg-primary);
-	background-image: radial-gradient(
-			at 0% 0%,
-			rgba(255, 126, 52, var(--gradient-opacity)) 0px,
-			transparent 50%
-		),
+	background-image:
+		radial-gradient(at 0% 0%, rgba(255, 126, 52, var(--gradient-opacity)) 0px, transparent 50%),
 		radial-gradient(at 100% 0%, rgba(59, 130, 246, var(--gradient-opacity)) 0px, transparent 50%);
 	background-attachment: fixed;
 	-webkit-font-smoothing: antialiased;
@@ -133,4 +128,27 @@ a:not([class]):hover {
 
 ul {
 	list-style: none;
+}
+
+details > p {
+	margin: 0;
+}
+
+code {
+	padding: 0.2rem 0.5rem;
+	background-color: light-dark(
+		hsl(from var(--accent-blue) h s 100),
+		hsl(from var(--accent-blue) h s 3)
+	);
+	border-radius: 5px;
+}
+
+details {
+	background-color: light-dark(
+		hsl(from var(--accent-blue) h s 95),
+		hsl(from var(--bg-primary) h 35 15)
+	);
+	padding: 0.5rem;
+	border-radius: 5px;
+	margin: 1rem 0;
 }

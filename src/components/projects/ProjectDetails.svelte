@@ -35,7 +35,11 @@
 				<span class="date">{projectDates(project.start_date, project.end_date)}</span>
 				{#if project.github}
 					<span class="divider">/</span>
-					<a href={project.github} target="_blank" class="github-link">github repository</a>
+					<a href={project.github} target="_blank" class="github-link">Github repository</a>
+				{/if}
+				{#if project.game_link}
+					<span class="divider">/</span>
+					<a href={project.game_link} target="_blank" class="github-link">Play the game!</a>
 				{/if}
 			</div>
 			<div class="tags">
@@ -48,7 +52,11 @@
 
 	<div class="project-content">
 		<section class="project-body">
-			{@render children?.()}
+			{#if children}
+				{@render children()}
+			{:else if project.github}
+				<a href={project.github}>GitHub README.md</a>
+			{/if}
 		</section>
 	</div>
 </div>
@@ -60,12 +68,18 @@
 		cursor: pointer;
 		border-radius: 5px;
 		padding: 0 1rem;
-		background-color: hsl(from var(--accent-blue) h s calc(95));
+		background-color: light-dark(
+			hsl(from var(--accent-blue) h s calc(95)),
+			hsl(from var(--accent-blue) h s calc(15))
+		);
 		line-height: 0;
 	}
 
 	.back-button:hover {
-		background-color: hsl(from var(--accent-blue) h s calc(90));
+		background-color: light-dark(
+			hsl(from var(--accent-blue) h s calc(90)),
+			hsl(from var(--accent-blue) h s calc(5))
+		);
 	}
 
 	.project-page {
@@ -128,7 +142,10 @@
 	}
 
 	.tech-tag {
-		background: hsl(from var(--accent-blue) h s 95);
+		background: light-dark(
+			hsl(from var(--accent-blue) h s 95),
+			hsl(from var(--accent-blue) h s 15)
+		);
 		color: var(--text-primary);
 		padding: 0.25rem 0.75rem;
 		color: var(--accent-blue);
