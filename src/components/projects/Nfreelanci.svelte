@@ -32,35 +32,6 @@
 	</p>
 
 	<details>
-		<summary> Working against Sveltekit</summary>
-
-		<p>
-			Fetch operations can fail for multiple reasons but we mostly care about the success path. The
-			question is, how to handle API failures? Should we display "Please refresh the page" kind of
-			message or should we ignore the error and fallback to the default value but then the content
-			will be misleading... Given that I model the fetching operation in <code>FetchOk</code>
-			and <code>FetchErr</code> variants (two objects I used to model fetch operations), Sveltekit
-			doesn't render the error page because all expections are caught. To overcome that, I had to
-			implement a generic component that accepts an object of fetch operations, if all operations
-			are <code>FetchOk</code> then we render the component otherwise we fallback to the error component.
-			And let me tell you, maintainability went down the drain. Code became unreadable and basically ugly.
-			Last sentence is not very accurate.. sveltekit doesn't have to render the error page, it could render
-			your error page in place of any component
-		</p>
-
-		<p>
-			Little did I know, Sveltekit doesn't just render an error page, it renders the +error.svelte
-			in place of the component that depends on the fetched content, assuming the project hierarchy
-			is suitable for this.
-		</p>
-
-		<p>
-			After going through the sveltekit documentation again and again, I have realized that
-			sveltekit offered what I needed out of the box.
-		</p>
-	</details>
-
-	<details>
 		<summary> Using monads in Typescript. </summary>
 
 		<p>
@@ -76,6 +47,34 @@
 	</details>
 
 	<details>
+		<summary> Working against Sveltekit</summary>
+
+		<p>
+			Fetch operations can fail for multiple reasons but we mostly care about the success path. The
+			question is, how to handle API failures? Should we display "Please refresh the page" kind of
+			message or should we ignore the error and fallback to the default value but then the content
+			will be misleading... Given that I model the fetching operation in <code>FetchOk</code>
+			and <code>FetchErr</code> variants (two objects I used to model fetch operations), Sveltekit
+			doesn't render the error page because all expections are caught. To overcome that, I had to
+			implement a generic component that accepts an object of fetch operations, if all operations
+			are <code>FetchOk</code> then we render the component otherwise we fallback to the error component.
+			And let me tell you, maintainability went down the drain. Code became unreadable and basically ugly.
+		</p>
+
+		<p>
+			Little did I know, Sveltekit doesn't just render an error page, it renders the closest
+			+error.svelte file relative in place of the component that depends on the fetched content,
+			assuming the project hierarchy is suitable for this.
+		</p>
+
+		<p>
+			After going through the sveltekit documentation again and again, I have realized that
+			sveltekit offered what I needed out of the box. At least, the +error.svelte component can
+			match on different types of <code>FetchErr</code> holds and render the corresponding content.
+		</p>
+	</details>
+
+	<details>
 		<summary>Google SSO state</summary>
 		<p>
 			When it comes to adding SSO, since the operation happens in multiple steps (from your app <MoveRight
@@ -85,7 +84,7 @@
 			to mitigate CSRF attacks; ensuring that the authentication response was triggered from your app
 			and not an attacker trying to inject their credentials. I personally did not want to bother with
 			maintaining the state value in a persistent and shared storage (because otherwise the server will
-			not longer be stateless). Instead we instruct the browser to send this state value within a cookie
+			no longer be stateless). Instead we instruct the browser to send this state value within a cookie
 			when the user gets redirected back to our app.
 		</p>
 	</details>
