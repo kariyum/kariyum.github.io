@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { ArrowRight, MoveRight } from '@lucide/svelte';
+	import { MoveRight } from '@lucide/svelte';
 	import type { Project } from '../../routes/+layout.server';
 	import ProjectDetails from './ProjectDetails.svelte';
+	import { scrollOnExpand } from '../../attachments/scrollOnExpand.svelte';
 
 	let { project }: { project: Project } = $props();
 </script>
@@ -31,7 +32,7 @@
 		fully in Rust, Sveltekit will fetch resources and render them, no db connections and no state.
 	</p>
 
-	<details>
+	<details {@attach scrollOnExpand}>
 		<summary> Using monads in Typescript. </summary>
 
 		<p>
@@ -46,7 +47,7 @@
 		</p>
 	</details>
 
-	<details>
+	<details {@attach scrollOnExpand}>
 		<summary> Working against Sveltekit</summary>
 
 		<p>
@@ -74,7 +75,7 @@
 		</p>
 	</details>
 
-	<details>
+	<details {@attach scrollOnExpand}>
 		<summary>Google SSO state</summary>
 		<p>
 			When it comes to adding SSO, since the operation happens in multiple steps (from your app <MoveRight

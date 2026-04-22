@@ -4,6 +4,7 @@
 	import { projectDates } from '$lib/utils';
 	import { MoveLeft } from '@lucide/svelte';
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 
 	interface Props {
 		children?: Snippet;
@@ -23,11 +24,11 @@
 				if (isInternal && window.history.length > 1) {
 					history.back();
 				} else {
-					await goto('/');
+					await goto(resolve('/'));
 				}
 			}}
 		>
-			<MoveLeft size={'32px'} />
+			<MoveLeft size="32px" />
 		</button>
 		<div class="header-main">
 			<h2 class="project-title">{title ?? project.title}</h2>
@@ -35,15 +36,23 @@
 				<span class="date">{projectDates(project.start_date, project.end_date)}</span>
 				{#if project.github}
 					<span class="divider">/</span>
-					<a href={project.github} target="_blank" class="github-link">Github repository</a>
+					<a
+						href={resolve('/[project]', { project: project.github })}
+						target="_blank"
+						class="github-link">Github repository</a
+					>
 				{/if}
 				{#if project.game_link}
 					<span class="divider">/</span>
-					<a href={project.game_link} target="_blank" class="github-link">Play the game!</a>
+					<a
+						href={resolve('/[project]', { project: project.game_link })}
+						target="_blank"
+						class="github-link">Play the game!</a
+					>
 				{/if}
 			</div>
 			<div class="tags">
-				{#each project.tech_stack as tech}
+				{#each project.tech_stack as tech (tech)}
 					<span class="tech-tag">{tech}</span>
 				{/each}
 			</div>
@@ -55,7 +64,7 @@
 			{#if children}
 				{@render children()}
 			{:else if project.github}
-				<a href={project.github}>GitHub README.md</a>
+				<a href={resolve('/[project]', { project: project.github })}>GitHub README.md</a>
 			{/if}
 		</section>
 	</div>
