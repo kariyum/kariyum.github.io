@@ -38,6 +38,7 @@
 					<span class="divider">/</span>
 					<a
 						href={resolve('/[project]', { project: project.github })}
+						rel="external"
 						target="_blank"
 						class="github-link">Github repository</a
 					>
@@ -46,6 +47,7 @@
 					<span class="divider">/</span>
 					<a
 						href={resolve('/[project]', { project: project.game_link })}
+						rel="external"
 						target="_blank"
 						class="github-link">Play the game!</a
 					>
@@ -64,7 +66,9 @@
 			{#if children}
 				{@render children()}
 			{:else if project.github}
-				<a href={resolve('/[project]', { project: project.github })}>GitHub README.md</a>
+				<a href={resolve('/[project]', { project: project.github })} rel="external"
+					>GitHub README.md</a
+				>
 			{/if}
 		</section>
 	</div>
