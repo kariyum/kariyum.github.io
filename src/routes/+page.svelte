@@ -44,7 +44,7 @@
 			>
 			<a
 				target="_blank"
-				rel="noreferrer noopener"
+				rel="noreferrer noopener external"
 				href={karim_ben_amara_resume}
 				class="link-branded">Resume</a
 			>
@@ -59,13 +59,13 @@
 	</div>
 	<p class="section-desc">This is a list numerating some of my projects I have done in the past</p>
 	<div class="feature-blocks">
-		{#each data.projects_curiosity as project}
+		{#each data.projects_curiosity as project (project)}
 			<div>
 				<div class="block-meta">
 					<span class="project-date">{projectDates(project.start_date, project.end_date)}</span>
 					<span class="divider">/</span>
 					<div class="tech-inline">
-						{#each project.tech_stack as tool}
+						{#each project.tech_stack as tool (tool)}
 							<span>{tool}</span>
 						{/each}
 					</div>
@@ -74,7 +74,7 @@
 					>{project.title}</a
 				>
 				<span class="project-body">
-					{#each project.body as description}
+					{#each project.body as description (description)}
 						<span>{@html description}</span>
 					{/each}
 				</span>
@@ -192,44 +192,6 @@
 		color: var(--text-secondary);
 	}
 
-	.projects-header-row {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-end;
-		margin-bottom: 2rem;
-	}
-
-	.layout-switcher {
-		display: flex;
-		gap: 0.5rem;
-		background: var(--tag-bg);
-		padding: 0.25rem;
-		border-radius: 0.5rem;
-		border: 1px solid var(--border-light);
-	}
-
-	.layout-switcher button {
-		padding: 0.35rem 0.75rem;
-		border-radius: 0.35rem;
-		font-size: 0.75rem;
-		font-weight: 600;
-		color: var(--text-secondary);
-		background: transparent;
-		border: none;
-		cursor: pointer;
-		transition: all 0.2s ease;
-	}
-
-	.layout-switcher button:hover {
-		color: var(--text-primary);
-	}
-
-	.layout-switcher button.active {
-		background: var(--bg-secondary);
-		color: var(--accent-orange);
-		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-	}
-
 	.section-header {
 		display: flex;
 		flex-direction: column;
@@ -260,130 +222,6 @@
 		font-size: 1rem;
 	}
 
-	/* System Index Layout */
-	.system-index {
-		display: flex;
-		flex-direction: column;
-		border: 1px solid var(--border-light);
-		border-radius: 0.75rem;
-		overflow: hidden;
-		background: var(--bg-secondary);
-	}
-
-	.index-row {
-		display: grid;
-		grid-template-columns: 1.5fr 2fr 1fr;
-		padding: 1rem 1.5rem;
-		text-align: left;
-		width: 100%;
-		border: none;
-		background: transparent;
-		cursor: pointer;
-		border-bottom: 1px solid var(--border-light);
-		align-items: center;
-		transition: background 0.2s ease;
-	}
-
-	.index-row:not(.header-row):hover {
-		background: var(--card-hover-bg);
-	}
-
-	.header-row {
-		background: var(--tag-bg);
-		cursor: default;
-		font-family: 'Fira Mono', monospace;
-		font-size: 0.7rem;
-		font-weight: 600;
-		color: var(--text-secondary);
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-	}
-
-	.col-title {
-		font-weight: 700;
-		color: var(--text-primary);
-	}
-
-	.col-tech {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.35rem;
-	}
-
-	.tech-pill {
-		font-size: 0.7rem;
-		background: var(--border-light);
-		padding: 0.1rem 0.4rem;
-		border-radius: 3px;
-		color: var(--text-secondary);
-	}
-
-	.col-date {
-		font-size: 0.85rem;
-		color: var(--text-secondary);
-		text-align: right;
-	}
-
-	.index-details {
-		background: var(--hover-overlay);
-		border-bottom: 1px solid var(--border-light);
-	}
-
-	.details-content {
-		padding: 1.5rem;
-	}
-
-	.details-footer {
-		margin-top: 1.5rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding-top: 1rem;
-		border-top: 1px solid var(--border-light);
-	}
-
-	/* Minimal List Layout */
-	.minimal-list {
-		display: flex;
-		flex-direction: column;
-		gap: 0;
-	}
-
-	.minimal-item {
-		padding: 1.5rem 0;
-		border-bottom: 1px solid var(--border-light);
-	}
-
-	.minimal-main {
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-		margin-bottom: 0.75rem;
-	}
-
-	.minimal-title {
-		font-size: 1.5rem;
-		font-weight: 800;
-		letter-spacing: -0.02em;
-	}
-
-	.minimal-date {
-		font-family: 'Fira Mono', monospace;
-		font-size: 0.85rem;
-		color: var(--text-secondary);
-	}
-
-	.minimal-reveal {
-		max-width: 800px;
-	}
-
-	.minimal-footer {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-top: 1rem;
-	}
-
 	.feature-blocks {
 		display: flex;
 		flex-direction: column;
@@ -408,157 +246,17 @@
 		color: var(--accent-orange);
 	}
 
-	.block-footer {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding-top: 1.5rem;
-		border-top: 1px solid var(--border-light);
-	}
-
-	.latest-news {
-		margin-bottom: 4rem;
-	}
-
-	.news-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border-light);
-		border-radius: 0.75rem;
-		padding: 1.5rem 2rem;
-		box-shadow: var(--card-shadow);
-	}
-
-	.tech-stack-inline {
-		margin-top: 1rem;
-		font-weight: 600;
-		font-size: 0.85rem;
-		color: var(--text-primary);
-	}
-
-	.grid {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-		margin-bottom: 4rem;
-	}
-
-	.project-card {
-		background: var(--bg-secondary);
-		border: 1px solid var(--border-light);
-		border-radius: 1rem;
-		padding: 2rem;
-		display: grid;
-		grid-template-columns: 1fr 240px;
-		gap: 2rem;
-		transition:
-			transform 0.2s ease,
-			box-shadow 0.2s ease,
-			border-color 0.2s ease;
-		box-shadow: var(--card-shadow);
-	}
-
-	.project-card:hover {
-		transform: translateY(-2px);
-		box-shadow: var(--card-shadow-hover);
-		border-color: var(--accent-orange);
-	}
-
-	.project-main-info {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.project-side-info {
-		display: flex;
-		flex-direction: column;
-		gap: 1.25rem;
-		padding-left: 1.5rem;
-		border-left: 1px solid var(--border-light);
-	}
-
-	@media (max-width: 850px) {
-		.project-card {
-			grid-template-columns: 1fr;
-			padding: 1.5rem;
-		}
-		.project-side-info {
-			padding-left: 0;
-			border-left: none;
-			border-top: 1px solid var(--border-light);
-			padding-top: 1.25rem;
-		}
-	}
-
-	.project-header {
-		display: flex;
-		flex-direction: column;
-		margin-bottom: 1rem;
-	}
-
-	.project-header h3 {
-		font-size: 1.35rem;
-		margin-bottom: 0.25rem;
-		color: var(--text-primary);
-	}
-
 	.project-date {
 		font-size: 0.85rem;
 		font-weight: 500;
 		color: var(--text-secondary);
 	}
-
-	.tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.4rem;
-	}
-
+	
 	.project-body {
 		font-size: 1rem;
 		line-height: 1.6;
 		color: var(--text-secondary);
 		flex-grow: 1;
-	}
-
-	.project-body p {
-		margin-bottom: 0.75rem;
-	}
-
-	.tech-section h4,
-	.links-section h4 {
-		font-size: 0.75rem;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		color: var(--text-secondary);
-		margin-bottom: 0.5rem;
-	}
-
-	.tech-list {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.4rem;
-	}
-
-	.tech-item {
-		font-size: 0.8rem;
-		font-weight: 600;
-		background: var(--tag-bg);
-		padding: 0.15rem 0.5rem;
-		border-radius: 4px;
-		color: var(--text-primary);
-	}
-
-	.github-link {
-		display: inline-flex;
-		align-items: center;
-		font-size: 0.9rem;
-		font-weight: 700;
-		color: var(--accent-blue);
-		transition: transform 0.2s ease;
-	}
-
-	.github-link:hover {
-		transform: translateX(4px);
 	}
 
 	.readings-container {
@@ -595,57 +293,5 @@
 
 	.reading-list li a {
 		font-size: 0.95rem;
-	}
-
-	.game-work {
-		margin-bottom: 4rem;
-		border-top: 1px solid var(--border-light);
-		padding-top: 2rem;
-	}
-
-	.game-work :global(.outer-container) {
-		text-align: left;
-		display: inline-block;
-		width: fit-content;
-		margin-bottom: 1rem;
-	}
-
-	.game-content {
-		max-width: 800px;
-		font-size: 0.95rem;
-		color: var(--text-secondary);
-	}
-
-	.game-content p {
-		margin-bottom: 1rem;
-	}
-
-	/*.fade-in {
-		animation: fadeIn 0.8s ease-out forwards;
-		opacity: 0;
-	}*/
-
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	.fade-in:nth-child(2) {
-		animation-delay: 0.2s;
-	}
-	.fade-in:nth-child(3) {
-		animation-delay: 0.4s;
-	}
-	.fade-in:nth-child(4) {
-		animation-delay: 0.6s;
-	}
-	.fade-in:nth-child(5) {
-		animation-delay: 0.8s;
 	}
 </style>
