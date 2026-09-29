@@ -57,7 +57,6 @@
 		<span class="section-label">TECHNICAL INTERESTS</span>
 		<h2 class="section-title">Hobby Projects</h2>
 	</div>
-	<p class="section-desc">This is a list numerating some of my projects I have done in the past</p>
 	<div class="feature-blocks">
 		{#each data.projects_curiosity as project (project)}
 			<div>
@@ -88,7 +87,6 @@
 		<span class="section-label">KNOWLEDGE BASE</span>
 		<h2 class="section-title">Technical Readings</h2>
 	</div>
-	<p class="section-desc">A collection of my favorite technical blogs and books.</p>
 	<div class="readings-container">
 		<div class="readings-column">
 			<h3>Articles</h3>
@@ -288,7 +286,6 @@
 		padding-bottom: 0.5rem;
 		border-bottom: 1px solid var(--border-light);
 		width: 100%;
-		max-width: 200px;
 	}
 
 	@media (max-width: 768px) {

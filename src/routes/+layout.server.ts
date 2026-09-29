@@ -54,6 +54,18 @@ export function load() {
 	};
 	const projects: RawProject[] = [
 		{
+			title: 'PostgreSQL Desktop Client',
+			keywords: ['Desktop-App', 'GUI', 'Rust', 'PostgreSQL', 'AI', 'LLM'],
+			body: [
+				'A native PostgreSQL desktop client built with Rust and Iced, featuring an AI assistant that explores your schema, writes queries, and explains execution plans through your configured LLM provider.'
+			],
+			github: 'https://github.com/kariyum/postgres-gui.git',
+			start_date: '2026-06-01',
+			end_date: '2026-09-01',
+			tech_stack: ['Rust', 'Iced', 'PostgreSQL', 'SQLx', 'Tokio', 'rig-core'],
+			app_page_url: 'pgeru'
+		},
+		{
 			title: 'www.nfreelanci.tn',
 			keywords: ['CRUD', 'Rust', 'Platform'],
 			body: [

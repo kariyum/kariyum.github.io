@@ -9,6 +9,7 @@
 	import FinanceApp from '../../components/projects/FinanceApp.svelte';
 	import ReunitedGame from '../../components/projects/ReunitedGame.svelte';
 	import Maze from '../../components/projects/Maze.svelte';
+	import Pgeru from '../../components/projects/Pgeru.svelte';
 
 	let { data } = $props();
 	const { project } = $derived(data);
@@ -21,7 +22,8 @@
 		['profiling-suite', ProfilingSuite],
 		['personal-finance-app', FinanceApp],
 		['reunited', ReunitedGame],
-		['maze', Maze]
+		['maze', Maze],
+		['pgeru', Pgeru]
 	]);
 
 	let ProjectComponent: Component<{ project: Project }> | undefined = $derived(
